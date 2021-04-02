@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using fNbt;
+using StructureToMiniBlock.App.Struture;
 //using NbtStudio.SNBT;
 
 namespace StructureToMiniBlock.Controls 
@@ -46,12 +47,9 @@ namespace StructureToMiniBlock.Controls
 				if (_openFileDialog.ShowDialog() == DialogResult.OK){
 
 					_form.Text = $"{_openFileDialog.FileName} - StructureNBT";
-					var myFile = new NbtFile();
-					myFile.LoadFromFile(_openFileDialog.FileName);
-					var myCompoundTag = myFile.RootTag;
-
-					int intVal = myCompoundTag.Get<NbtInt>("intTest").Value;
-					MessageBox.Show(intVal.ToString());
+					
+					Structure otherFunction = new Structure();
+					otherFunction.Size(_openFileDialog.FileName);
 
 				}
 			};
