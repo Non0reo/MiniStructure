@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
 using System.IO;
+using System.Collections;
 using System.Windows.Forms;
 using fNbt;
 using StructureToMiniBlock.Controls;
@@ -11,24 +12,71 @@ namespace StructureToMiniBlock.App.Struture
 {
     public class Structure
     {
+        public int[] size = new int[3];
+        public int count = 0;
+
         public void Size(string file)
         {
-            var size = new int[3];
-
             var myFile = new NbtFile();
             myFile.LoadFromFile(file);
             var myCompTag = myFile.RootTag;
-            NbtList list1 = myFile.RootTag.Get<NbtList>("size");
+            NbtList list = myFile.RootTag.Get<NbtList>("size");
 
             for (int i = 0; i < 3; i++)
             {
-                size[i] = list1.Get<NbtInt>(i).IntValue;
+                size[i] = list.Get<NbtInt>(i).IntValue;
                 MessageBox.Show(size[i].ToString());
             }
+            count = size[0] * size[1] * size[2];
+        }
 
-            //size[i] = myCompTag["size"][i].IntValue;
-            //MessageBox.Show(size[0].ToString() + size[1].ToString() + size[2].ToString());
-            //MessageBox.Show(intVal.ToString());
+        public void Palette(string file)
+        {
+            List<string> palette = new List<string>();
+            var myFile = new NbtFile();
+            myFile.LoadFromFile(file);
+            var myCompTag = myFile.RootTag;
+            NbtList block = myFile.RootTag.Get<NbtList>("palette");
+
+            for (int i = 0; i < block.Count; i++)
+            {
+                palette.Add(block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue);
+                MessageBox.Show(palette[i].ToString());
+            }
+        }
+
+        public void Block(string file)
+        {
+            var block = new ArrayList();
+            var myFile = new NbtFile();
+            myFile.LoadFromFile(file);
+            var myCompTag = myFile.RootTag;
+            NbtList entries = myFile.RootTag.Get<NbtList>("blocks");
+            // Y :
+            for (int i = 0; i < size[1]; i++)
+            {
+                // Z :
+                for (int j = 0; j < size[2]; j++)
+                {
+                    // X :
+                    for (int k = 0; k < size[0]; k++)
+                    {
+                        for (int l = 0; l < count; l++)
+                        {
+                            NbtList pos = entries.Get<NbtCompound>(l).Get<NbtList>("pos");
+                            if (pos.Get<NbtInt>(0).IntValue == k
+                                && pos.Get<NbtInt>(1).IntValue == i
+                                && pos.Get<NbtInt>(2).IntValue == j)
+                            {
+                                MessageBox.Show(entries.Get<NbtCompound>(l).Get<NbtInt>("state").ToString());
+
+                            }
+                        }
+                    }
+                }
+            }
+            MessageBox.Show(count.ToString());
+            System.Console.WriteLine(count);
         }
     }
 }
