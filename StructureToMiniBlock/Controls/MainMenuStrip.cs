@@ -49,9 +49,7 @@ namespace StructureToMiniBlock.Controls
 					_form.Text = $"{_openFileDialog.FileName} - StructureNBT";
 					
 					Structure structFunction = new Structure();
-					structFunction.Size(_openFileDialog.FileName);
-					structFunction.Palette(_openFileDialog.FileName);
-					structFunction.Block(_openFileDialog.FileName);
+					structFunction.Launch(_openFileDialog.FileName);
 
 				}
 			};

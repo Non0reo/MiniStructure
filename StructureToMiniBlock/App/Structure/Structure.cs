@@ -14,6 +14,15 @@ namespace StructureToMiniBlock.App.Struture
     {
         public int[] size = new int[3];
         public int count = 0;
+        public string [] data = new string[4];
+        public List<string> palette = new List<string>();
+
+        public void Launch(string file)
+        {
+            Size(file);
+            Palette(file);
+            Block(file);
+        }
 
         public void Size(string file)
         {
@@ -32,7 +41,6 @@ namespace StructureToMiniBlock.App.Struture
 
         public void Palette(string file)
         {
-            List<string> palette = new List<string>();
             var myFile = new NbtFile();
             myFile.LoadFromFile(file);
             var myCompTag = myFile.RootTag;
@@ -68,15 +76,26 @@ namespace StructureToMiniBlock.App.Struture
                                 && pos.Get<NbtInt>(1).IntValue == i
                                 && pos.Get<NbtInt>(2).IntValue == j)
                             {
-                                MessageBox.Show(entries.Get<NbtCompound>(l).Get<NbtInt>("state").ToString());
-
+                                string state = entries.Get<NbtCompound>(l).Get<NbtInt>("state").IntValue.ToString();
+                                MessageBox.Show(state.ToString());
+                                data[0] = k.ToString();
+                                data[1] = i.ToString();
+                                data[2] = j.ToString();
+                                //data[3] = state;
+                                data[3] = palette[int.Parse(state)];
+                                block.AddRange(data);
                             }
                         }
                     }
                 }
             }
             MessageBox.Show(count.ToString());
-            System.Console.WriteLine(count);
+            Console.WriteLine(count);
+
+            for (int i = 0; i < count; i++)
+            {
+                MessageBox.Show((string)block[i]);
+            }
         }
     }
 }
