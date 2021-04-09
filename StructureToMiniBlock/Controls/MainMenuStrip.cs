@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows.Forms;
 using fNbt;
 using StructureToMiniBlock.App.Struture;
+using StructureToMiniBlock.App.Windows;
 //using NbtStudio.SNBT;
 
 namespace StructureToMiniBlock.Controls 
@@ -52,6 +53,12 @@ namespace StructureToMiniBlock.Controls
 					structFunction.Launch(_openFileDialog.FileName);
 
 				}
+			};
+
+			saveMenu.Click += async (object sender, EventArgs e) =>
+			{
+				CreateForm secondForm = new CreateForm();
+				secondForm.Show();
 			};
 
 			fileDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { newMenu, openMenu, saveMenu, saveAsMenu, quitMenu });

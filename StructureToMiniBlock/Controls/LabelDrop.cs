@@ -6,6 +6,6 @@ namespace StructureToMiniBlock.Controls
 {
     class LabelDrop : MainForm
     {
-        //public Dro
+        //$$public Dro
     }
 }

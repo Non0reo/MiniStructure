@@ -32,7 +32,6 @@ namespace StructureToMiniBlock
             this.label1 = new System.Windows.Forms.Label();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,26 +61,12 @@ namespace StructureToMiniBlock
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 104);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(105, 32);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Tag = "Param";
-            this.checkBox1.Text = "Invisible";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(814, 470);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
@@ -94,7 +79,6 @@ namespace StructureToMiniBlock
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
 		}
 
@@ -102,7 +86,6 @@ namespace StructureToMiniBlock
 		private System.IO.FileSystemWatcher fileSystemWatcher1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
         public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
