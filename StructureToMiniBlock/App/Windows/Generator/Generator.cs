@@ -98,14 +98,6 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                 continue;
                             }
                         }
-                        MessageBox.Show("test 1");
-                        var allowDrop = new MainForm();
-                        allowDrop.AllowDrop = true;
-                        var canOpen = new MainMenuStrip();
-                        canOpen.openFile(true);
-                        var secondForm = new StructureToMiniBlock.App.Windows.CreateForm();
-                        secondForm.stop(true);
-                        MessageBox.Show("test 2");
                     }
                 }
 
@@ -114,6 +106,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
                     MessageBox.Show(ex.ToString());
                 }
             }
+
+            var allowDrop = new MainForm();
+            allowDrop.AllowDrop = true;
+            var canOpen = new MainMenuStrip();
+            canOpen.openFile(true);
         }
     }
 }

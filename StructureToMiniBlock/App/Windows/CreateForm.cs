@@ -9,6 +9,7 @@ namespace StructureToMiniBlock.App.Windows
         Generator.Generator generator = new Generator.Generator();
         public static bool noGrav = true;
         public static bool marker = true;
+        public CreateForm _form;
         public CreateForm()
         {
             InitializeComponent();
@@ -44,8 +45,11 @@ namespace StructureToMiniBlock.App.Windows
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             var structFunction = new Struture.Structure();
             structFunction.getBlock();
+            this.Close();
+            MessageBox.Show("Your file have been created!");
         }
 
         private void paramNoGravity_CheckedChanged(object sender, EventArgs e)
@@ -79,14 +83,6 @@ namespace StructureToMiniBlock.App.Windows
             generator.mark(1);
         }
 
-        public void stop(bool stop)
-        {
-            if (stop == true)
-            {
-                this.Close();
-                MessageBox.Show("test 3");
-            }
-        }
 
         private void CreateForm_FormClosed(object sender, FormClosedEventArgs e)
         {

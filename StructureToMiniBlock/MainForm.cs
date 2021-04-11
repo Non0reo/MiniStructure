@@ -50,6 +50,8 @@ namespace StructureToMiniBlock
 						CreateForm secondForm = new CreateForm();
 						secondForm.Show();
 					}
+					var strip = new Controls.MainMenuStrip();
+					strip.openFile(false);
 					this.AllowDrop = false;
 				}
 				tempo = 1;

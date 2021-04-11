@@ -40,13 +40,14 @@ namespace StructureToMiniBlock.Controls
 			{
 				if (_openFileDialog.ShowDialog() == DialogResult.OK && canOpenFile == true){
 
-					_form.Text = $"{_openFileDialog.FileName} - StructureNBT";
+					_form.Text = $"{_openFileDialog.FileName} - MiniStructure";
 					
 					Structure structFunction = new Structure();
 					structFunction.Launch(_openFileDialog.FileName);
 					CreateForm secondForm = new CreateForm();
 					secondForm.Show();
-					
+					var form = new MainForm();
+					form.AllowDrop = false;
 					canOpenFile = false;
 				} else
                 {
@@ -80,7 +81,7 @@ namespace StructureToMiniBlock.Controls
 					message,
 					title,
 					MessageBoxButtons.YesNo,
-					MessageBoxIcon.Question);
+					MessageBoxIcon.None);
 
                 if (result == DialogResult.Yes)
                 {
@@ -95,7 +96,7 @@ namespace StructureToMiniBlock.Controls
 
 			helpMenu.Click += (object sender, EventArgs e) =>
 			{
-				MessageBox.Show("• Open or Drop your .nbt file\n• Select your options and the size" +
+				MessageBox.Show("• Open or Drop your .nbt Structure file\n• Select your options and the size" +
 					"" +
 					" of your structure\n• Click on 'Create', select the location for the file\n• Your .mcfunction is now created!", "How to use this software");
 			};
