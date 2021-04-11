@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StructureToMiniBlock.App.Windows;
+using System;
 using System.Windows.Forms;
 
 namespace StructureToMiniBlock
 {
-	public partial class MainForm : Form
+    public partial class MainForm : Form
 	{
-		public int tempo = 0;
+		public static int tempo = 0;
 
 		public MainForm()
 		{
@@ -23,7 +17,6 @@ namespace StructureToMiniBlock
 			this.AllowDrop = true;
 			this.DragEnter += new DragEventHandler(MainForm_DragEnter);
 			this.DragDrop += new DragEventHandler(MainForm_DragDrop);
-			//label1;
 		}
 
 		private void mainMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -51,10 +44,13 @@ namespace StructureToMiniBlock
 					MessageBox.Show("Please put only one  file at the time");
 				} else {
 					foreach (var file in files){
-						MessageBox.Show(file);
+						//MessageBox.Show(file);
 						App.Struture.Structure structFunction = new App.Struture.Structure();
 						structFunction.Launch(file);
+						CreateForm secondForm = new CreateForm();
+						secondForm.Show();
 					}
+					this.AllowDrop = false;
 				}
 				tempo = 1;
 			} else {

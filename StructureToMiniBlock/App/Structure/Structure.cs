@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
-using System.IO;
+﻿using fNbt;
 using System.Collections;
-using System.Windows.Forms;
-using fNbt;
-using StructureToMiniBlock.Controls;
+using System.Collections.Generic;
 
 namespace StructureToMiniBlock.App.Struture
 {
     public class Structure
     {
-        public int[] size = new int[3];
-        public int count = 0;
+        public static int[] size = new int[3];
+        public static int count;
         public string [] data = new string[4];
         public List<string> palette = new List<string>();
+        public static ArrayList block = new ArrayList();
 
         public void Launch(string file)
         {
@@ -34,7 +29,7 @@ namespace StructureToMiniBlock.App.Struture
             for (int i = 0; i < 3; i++)
             {
                 size[i] = list.Get<NbtInt>(i).IntValue;
-                MessageBox.Show(size[i].ToString());
+                //MessageBox.Show(size[i].ToString());
             }
             count = size[0] * size[1] * size[2];
         }
@@ -49,13 +44,12 @@ namespace StructureToMiniBlock.App.Struture
             for (int i = 0; i < block.Count; i++)
             {
                 palette.Add(block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue);
-                MessageBox.Show(palette[i].ToString());
+                //MessageBox.Show(palette[i].ToString());
             }
         }
 
         public void Block(string file)
         {
-            var block = new ArrayList();
             var myFile = new NbtFile();
             myFile.LoadFromFile(file);
             var myCompTag = myFile.RootTag;
@@ -77,11 +71,10 @@ namespace StructureToMiniBlock.App.Struture
                                 && pos.Get<NbtInt>(2).IntValue == j)
                             {
                                 string state = entries.Get<NbtCompound>(l).Get<NbtInt>("state").IntValue.ToString();
-                                MessageBox.Show(state.ToString());
+                                //MessageBox.Show(state.ToString());
                                 data[0] = k.ToString();
                                 data[1] = i.ToString();
                                 data[2] = j.ToString();
-                                //data[3] = state;
                                 data[3] = palette[int.Parse(state)];
                                 block.AddRange(data);
                             }
@@ -89,13 +82,17 @@ namespace StructureToMiniBlock.App.Struture
                     }
                 }
             }
-            MessageBox.Show(count.ToString());
-            Console.WriteLine(count);
-
-            for (int i = 0; i < count; i++)
+            
+            /*for (int i = 0; i < (count*4); i++)
             {
-                MessageBox.Show((string)block[i]);
-            }
+                MessageBox.Show((string)block[i] + " :" + i);
+            }*/
+        }
+
+        public void getBlock()
+        {
+            var gen = new Windows.Generator.Generator();
+            gen.createFile(size, block, count);
         }
     }
 }

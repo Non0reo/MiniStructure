@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.ComponentModel;
-using System.IO;
-using System.Windows.Forms;
-using fNbt;
-using StructureToMiniBlock.App.Struture;
+﻿using StructureToMiniBlock.App.Struture;
 using StructureToMiniBlock.App.Windows;
-//using NbtStudio.SNBT;
+using System;
+using System.Windows.Forms;
 
-namespace StructureToMiniBlock.Controls 
+namespace StructureToMiniBlock.Controls
 {
-	class MainMenuStrip : MenuStrip
+    class MainMenuStrip : MenuStrip
 	{
 		public OpenFileDialog _openFileDialog;
 		private MainForm _form;
+		public static bool canOpenFile = true;
 
 		public MainMenuStrip()
 		{
@@ -23,8 +18,6 @@ namespace StructureToMiniBlock.Controls
 			Name = "MainMenuStrip";
 			Dock = DockStyle.Top;
 			FileDropDownMenu();
-			EditDropDownMenu();
-			ViewDropDownMenu();
 			FormatDropDownMenu();
 
 			HandleCreated += (s, e) =>
@@ -37,93 +30,85 @@ namespace StructureToMiniBlock.Controls
 		{
 			var fileDropDownMenu = new ToolStripMenuItem("Fichier");
 
-			var newMenu = new ToolStripMenuItem("Nouveau", null, null, Keys.Control | Keys.N);
-			var openMenu = new ToolStripMenuItem("Ouvrir", null, null, Keys.Control | Keys.O);
-			var saveMenu = new ToolStripMenuItem("Enregister", null, null, Keys.Control | Keys.S);
-			var saveAsMenu = new ToolStripMenuItem("Enregistrer sous", null, null, Keys.Control | Keys.Shift | Keys.N);
-			var quitMenu = new ToolStripMenuItem("Quitter", null, null, Keys.Alt | Keys.F4);
+			var newMenu = new ToolStripMenuItem("New", null, null, Keys.Control | Keys.N);
+			var openMenu = new ToolStripMenuItem("Open", null, null, Keys.Control | Keys.O);
+			//var saveMenu = new ToolStripMenuItem("Save", null, null, Keys.Control | Keys.S);
+			//var saveAsMenu = new ToolStripMenuItem("Save As", null, null, Keys.Control | Keys.Shift | Keys.N);
+			var quitMenu = new ToolStripMenuItem("Quit", null, null, Keys.Alt | Keys.F4);
 
-			openMenu.Click += async (object sender, EventArgs e) =>
+			openMenu.Click += (object sender, EventArgs e) =>
 			{
-				if (_openFileDialog.ShowDialog() == DialogResult.OK){
+				if (_openFileDialog.ShowDialog() == DialogResult.OK && canOpenFile == true){
 
 					_form.Text = $"{_openFileDialog.FileName} - StructureNBT";
 					
 					Structure structFunction = new Structure();
 					structFunction.Launch(_openFileDialog.FileName);
-
-				}
+					CreateForm secondForm = new CreateForm();
+					secondForm.Show();
+					
+					canOpenFile = false;
+				} else
+                {
+					MessageBox.Show("You can't open a file. Close the 'Make your Struture' window");
+                }
 			};
 
-			saveMenu.Click += async (object sender, EventArgs e) =>
+			quitMenu.Click += (object sender, EventArgs e) =>
 			{
-				CreateForm secondForm = new CreateForm();
-				secondForm.Show();
+				_form.Close();
 			};
 
-			fileDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { newMenu, openMenu, saveMenu, saveAsMenu, quitMenu });
+			fileDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { newMenu, openMenu,/*saveMenu, saveAsMenu,*/ quitMenu });
 
 			Items.Add(fileDropDownMenu);
 		}
 
-		public void EditDropDownMenu()
-		{
-			var editDropDownMenu = new ToolStripMenuItem("Edition");
-
-			var cancelMenu = new ToolStripMenuItem("Annuler", null, null, Keys.Control | Keys.Z);
-			var restoreMenu = new ToolStripMenuItem("Restaurer", null, null, Keys.Control | Keys.Y);
-
-
-			editDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { cancelMenu, restoreMenu});
-
-			Items.Add(editDropDownMenu);
-		}
-
 		public void FormatDropDownMenu()
 		{
-			var helpDropDownMenu = new ToolStripMenuItem("Aide");
+			var helpDropDownMenu = new ToolStripMenuItem("Help");
 
-			var creditMenu = new ToolStripMenuItem("Crédit");
+			var helpMenu = new ToolStripMenuItem("How to use it");
+			var creditMenu = new ToolStripMenuItem("Credit");
 
+			creditMenu.Click += (object sender, EventArgs e) =>
+			{
+				const string message = "Made by NoNOréo\nGithub: https://github.com/Non0reo \n\nIt's my first C# Project.. So, don't look too much into the code :3\nDo you want to see my Github?";
+				const string title = "Information and Credit";
 
-			helpDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { creditMenu });
+				var result = MessageBox.Show(
+					message,
+					title,
+					MessageBoxButtons.YesNo,
+					MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+					var uri = "https://github.com/Non0reo";
+					var psi = new System.Diagnostics.ProcessStartInfo();
+					psi.UseShellExecute = true;
+					psi.FileName = uri;
+					System.Diagnostics.Process.Start(psi);
+				}
+
+			};
+
+			helpMenu.Click += (object sender, EventArgs e) =>
+			{
+				MessageBox.Show("• Open or Drop your .nbt file\n• Select your options and the size" +
+					"" +
+					" of your structure\n• Click on 'Create', select the location for the file\n• Your .mcfunction is now created!", "How to use this software");
+			};
+
+			helpDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { creditMenu, helpMenu });
 
 			Items.Add(helpDropDownMenu);
 		}
 
-		public void ViewDropDownMenu()
-		{
-			var viewDropDownMenu = new ToolStripMenuItem("Format");
+		public void openFile(bool file)
+        {
+				canOpenFile = file;
+        }
 
-			var alwaysOnTopMenu = new ToolStripMenuItem("Toujours Devant");
-
-
-			viewDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { alwaysOnTopMenu });
-
-			Items.Add(viewDropDownMenu);
-		}
-
-
-
-		/*public static NbtFile CreateFromSnbt(string path)
-		{
-			using (var stream = File.OpenRead(path))
-			using (var reader = new StreamReader(stream, Encoding.UTF8))
-			{
-				char[] firstchar = new char[1];
-				reader.ReadBlock(firstchar, 0, 1);
-				if (firstchar[0] != '{') // optimization to not load in huge files
-					throw new FormatException("File did not begin with a '{'");
-				var text = firstchar[0] + reader.ReadToEnd();
-				var tag = SnbtParser.Parse(text, named: false);
-				if (!(tag is NbtCompound compound))
-					throw new FormatException("File did not contain an NBT compound");
-				compound.Name = "";
-				var file = new fNbt.NbtFile(compound);
-				return new NbtFile(path);
-			}
-		}*/
-	}
-
-	
+	}	
 }
