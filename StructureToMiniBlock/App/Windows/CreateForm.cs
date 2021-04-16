@@ -10,6 +10,7 @@ namespace StructureToMiniBlock.App.Windows
         public static bool noGrav = true;
         public static bool marker = true;
         public CreateForm _form;
+
         public CreateForm()
         {
             InitializeComponent();
@@ -35,7 +36,24 @@ namespace StructureToMiniBlock.App.Windows
         {
             var structFunction = new Generator.Generator();
             structFunction.generateSize(comboBox1.Text);
+            switch (comboBox1.Text)
+            {
+                case "Big (0.625 block)":
+                    label3.Text = "";
+                    break;
+                case "Normal (0.4375 block)":
+                    label3.Text = "";
+                    break;
+                case "Small (0.3745 block)":
+                    label3.Text = "Warnnig : This size may cause\nsome block rotation isssues";
+                    label3.ForeColor = System.Drawing.Color.Red;
+                    break;
+                case "Mini (0.1874 block)":
+                    label3.Text = "Warnnig : This size may cause\nsome block rotation isssues";
+                    label3.ForeColor = System.Drawing.Color.Red;
+                    break;
 
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -48,6 +66,7 @@ namespace StructureToMiniBlock.App.Windows
 
             var structFunction = new Struture.Structure();
             structFunction.getBlock();
+            structFunction.reset();
             this.Close();
             MessageBox.Show("Your file have been created!");
         }
@@ -79,6 +98,7 @@ namespace StructureToMiniBlock.App.Windows
 
         private void CreateForm_Load(object sender, EventArgs e)
         {
+            label3.Text = "";
             generator.noGrav(1);
             generator.mark(1);
         }
@@ -90,6 +110,11 @@ namespace StructureToMiniBlock.App.Windows
             allowDrop.AllowDrop = true;
             var canOpen = new MainMenuStrip();
             canOpen.openFile(true);
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
