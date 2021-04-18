@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using StructureToMiniBlock.App.Windows.Generator;
 
 namespace StructureToMiniBlock.App.Struture
 {
@@ -9,7 +10,7 @@ namespace StructureToMiniBlock.App.Struture
     {
         public static int[] size = new int[3];
         public static int count;
-        public string [] data = new string[5];
+        public string [] data = new string[6];
         public List<List<string>> palette = new List<List<string>>();
         //public List<string> palette = new List<string>();
         //public List<string> blockAndNbt = new List<string>();
@@ -49,18 +50,22 @@ namespace StructureToMiniBlock.App.Struture
             {
                 if (block.Get<NbtCompound>(i).Contains("Properties") == true)
                 {
-                    if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true)
+                    BlockStateConstraint bSC = new BlockStateConstraint();
+                    palette.Add(bSC.BlockStates(file, i));
+
+                    /*if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true)
                     {
                         palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue });
                     } else
                     {
                         palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null" });
-                    }
+                    }*/
                 }
                 else
                 {
-                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null" });
+                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null", "null" });
                 }
+                
                 /*for (int j = 0; j < nbtBlock.Count; j++)
                 {
                     blockAndNbt.Add(nbtBlock.Get<NbtString>("facing").StringValue);
@@ -99,24 +104,11 @@ namespace StructureToMiniBlock.App.Struture
                                 data[0] = k.ToString();
                                 data[1] = i.ToString();
                                 data[2] = j.ToString();
-                                //MessageBox.Show(palette[state][0]);
                                 data[3] = palette[state][0];
-
-                                //MessageBox.Show(palette[state][1].ToString());
                                 data[4] = palette[state][1];
+                                data[5] = palette[state][2];
 
                                 block.AddRange(data);
-                                /*NbtString exist;
-                                if (myFile.RootTag.Get<NbtList>("palette").Get<NbtCompound>(1).TryGet<NbtString>("facing", out exist) == true)
-                                {
-
-                                }*/
-                                /*try 
-                                {
-                                    MessageBox.Show(palette[state][1].ToString());
-                                    data[4] = palette[state][1];                                    
-                                }
-                                catch { }*/
                             } 
                         }
                     }

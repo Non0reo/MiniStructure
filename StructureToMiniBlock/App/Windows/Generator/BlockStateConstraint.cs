@@ -2,11 +2,45 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections;
+using fNbt;
 
 namespace StructureToMiniBlock.App.Windows.Generator
 {
     class BlockStateConstraint
     {
+
+        public List<string> BlockStates(string file, int i)
+        {
+            var myFile = new NbtFile();
+            myFile.LoadFromFile(file);
+            var myCompTag = myFile.RootTag;
+            NbtList block = myFile.RootTag.Get<NbtList>("palette");
+            List<string> listblock = new List<string>();
+
+            listblock.Add(block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue);
+
+
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue);
+            } else
+            {
+                listblock.Add("null");
+            }
+
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("type") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("type").StringValue);
+            }
+            else
+            {
+                listblock.Add("null");
+            }
+
+            return listblock;  
+        } 
+
+
         public string ChangeFacing(string block)
         {
             switch (block)
@@ -116,7 +150,27 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
         }
 
+        public double SlabType(byte size)
+        {
+            double temp = 0.3125;
 
+                switch (size)
+                {
+                    case 1:
+                        temp = 0.3125;
+                    break;
+                    case 2:
+                        temp = 0.21875;
+                    break;
+                    case 3:
+                        temp = 0.18725;
+                    break;
+                    case 4:
+                        temp = 0.0937;
+                    break;
+                }
 
+            return temp;
+        }
     }
 }

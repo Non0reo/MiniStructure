@@ -123,9 +123,9 @@ namespace StructureToMiniBlock.App.Windows
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 207);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 20);
+            this.label3.Size = new System.Drawing.Size(27, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
+            this.label3.Text = "---";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // CreateForm

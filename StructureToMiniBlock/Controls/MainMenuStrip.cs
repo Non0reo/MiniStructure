@@ -30,7 +30,7 @@ namespace StructureToMiniBlock.Controls
 		{
 			var fileDropDownMenu = new ToolStripMenuItem("Fichier");
 
-			var newMenu = new ToolStripMenuItem("New", null, null, Keys.Control | Keys.N);
+			//var newMenu = new ToolStripMenuItem("New", null, null, Keys.Control | Keys.N);
 			var openMenu = new ToolStripMenuItem("Open", null, null, Keys.Control | Keys.O);
 			//var saveMenu = new ToolStripMenuItem("Save", null, null, Keys.Control | Keys.S);
 			//var saveAsMenu = new ToolStripMenuItem("Save As", null, null, Keys.Control | Keys.Shift | Keys.N);
@@ -40,7 +40,7 @@ namespace StructureToMiniBlock.Controls
 			{
 				if (_openFileDialog.ShowDialog() == DialogResult.OK && canOpenFile == true){
 
-					_form.Text = $"{_openFileDialog.FileName} - MiniStructure";
+					//_form.Text = $"{_openFileDialog.FileName} - MiniStructure";
 					
 					Structure structFunction = new Structure();
 					structFunction.Launch(_openFileDialog.FileName);
@@ -60,7 +60,7 @@ namespace StructureToMiniBlock.Controls
 				_form.Close();
 			};
 
-			fileDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { newMenu, openMenu,/*saveMenu, saveAsMenu,*/ quitMenu });
+			fileDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { /*newMenu,*/ openMenu,/*saveMenu, saveAsMenu,*/ quitMenu });
 
 			Items.Add(fileDropDownMenu);
 		}
@@ -71,6 +71,7 @@ namespace StructureToMiniBlock.Controls
 
 			var helpMenu = new ToolStripMenuItem("How to use it");
 			var creditMenu = new ToolStripMenuItem("Credit");
+			var infoMenu = new ToolStripMenuItem("Information");
 
 			creditMenu.Click += (object sender, EventArgs e) =>
 			{
@@ -101,7 +102,12 @@ namespace StructureToMiniBlock.Controls
 					" of your structure\n• Click on 'Create', select the location for the file\n• Your .mcfunction is now created!", "How to use this software");
 			};
 
-			helpDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { creditMenu, helpMenu });
+			infoMenu.Click += (object sender, EventArgs e) =>
+			{
+				MessageBox.Show("A lot of blockstate will not be taken in consideration.\nFor now, only \"facing\" and \"type\" will affect the structure.\n\nAlso, block in you structure can not be well converted, I'm working on it!", "Information");
+			};
+
+			helpDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { creditMenu, helpMenu , infoMenu });
 
 			Items.Add(helpDropDownMenu);
 		}
