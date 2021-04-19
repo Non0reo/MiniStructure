@@ -88,7 +88,7 @@ namespace StructureToMiniBlock.App.Windows
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.AutoSize = true;
             this.button1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.Location = new System.Drawing.Point(621, 379);
+            this.button1.Location = new System.Drawing.Point(481, 242);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(167, 59);
             this.button1.TabIndex = 3;
@@ -134,7 +134,7 @@ namespace StructureToMiniBlock.App.Windows
             // richTextBox1
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(605, 35);
+            this.richTextBox1.Location = new System.Drawing.Point(465, 35);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(183, 158);
             this.richTextBox1.TabIndex = 7;
@@ -145,7 +145,7 @@ namespace StructureToMiniBlock.App.Windows
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(637, 9);
+            this.label4.Location = new System.Drawing.Point(497, 9);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(151, 23);
             this.label4.TabIndex = 8;
@@ -155,7 +155,7 @@ namespace StructureToMiniBlock.App.Windows
             // 
             this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(613, 12);
+            this.checkBox2.Location = new System.Drawing.Point(473, 12);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(18, 17);
             this.checkBox2.TabIndex = 9;
@@ -166,7 +166,7 @@ namespace StructureToMiniBlock.App.Windows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(660, 313);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.richTextBox1);
@@ -178,7 +178,7 @@ namespace StructureToMiniBlock.App.Windows
             this.Controls.Add(this.paramNoGravity);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(500, 330);
+            this.MinimumSize = new System.Drawing.Size(500, 350);
             this.Name = "CreateForm";
             this.Text = "CreateForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateForm_FormClosed);
