@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using StructureToMiniBlock.Controls;
+using System.Collections;
 
 namespace StructureToMiniBlock.App.Windows
 {
@@ -9,6 +10,8 @@ namespace StructureToMiniBlock.App.Windows
         Generator.Generator generator = new Generator.Generator();
         public static bool noGrav = true;
         public static bool marker = true;
+        public static bool tag = false;
+        public static string[] tagsList;
         public CreateForm _form;
 
         public CreateForm()
@@ -36,7 +39,7 @@ namespace StructureToMiniBlock.App.Windows
         {
             var structFunction = new Generator.Generator();
             structFunction.generateSize(comboBox1.Text);
-            switch (comboBox1.Text)
+            /*switch (comboBox1.Text)
             {
                 case "Big (0.625 block)":
                     label3.Text = "";
@@ -53,7 +56,7 @@ namespace StructureToMiniBlock.App.Windows
                     label3.ForeColor = System.Drawing.Color.Red;
                     break;
 
-            }
+            }*/
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -63,7 +66,7 @@ namespace StructureToMiniBlock.App.Windows
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            tagsList = richTextBox1.Lines;
             var structFunction = new Struture.Structure();
             structFunction.getBlock();
             structFunction.reset();
@@ -101,6 +104,10 @@ namespace StructureToMiniBlock.App.Windows
             label3.Text = "";
             generator.noGrav(1);
             generator.mark(1);
+            tag = false;
+            checkBox2.Checked = false;
+            richTextBox1.ReadOnly = true;
+            richTextBox1.Enabled = false;
         }
 
 
@@ -110,11 +117,38 @@ namespace StructureToMiniBlock.App.Windows
             allowDrop.AllowDrop = true;
             var canOpen = new MainMenuStrip();
             canOpen.openFile(true);
+            var reset = new Struture.Structure();
+            reset.reset();
+
         }
 
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void CreateForm_Resize(object sender, EventArgs e)
+        {
+        }
+
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            if (tag == false)
+            {
+                richTextBox1.ReadOnly = false;
+                richTextBox1.HideSelection = false;
+                richTextBox1.Enabled = true;
+                richTextBox1.BackColor = System.Drawing.Color.White;
+                richTextBox1.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                richTextBox1.ReadOnly = true;
+                richTextBox1.Enabled = false;
+                richTextBox1.ForeColor = System.Drawing.Color.Transparent;
+            }
+            tag = !tag;
+        }
+
     }
 }

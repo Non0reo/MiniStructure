@@ -104,7 +104,7 @@ namespace StructureToMiniBlock.Controls
 
 			infoMenu.Click += (object sender, EventArgs e) =>
 			{
-				MessageBox.Show("A lot of blockstate will not be taken in consideration.\nFor now, only \"facing\" and \"type\" will affect the structure.\n\nAlso, block in you structure can not be well converted, I'm working on it!", "Information");
+				MessageBox.Show("• A lot of blockstate will not be taken in consideration.\nFor now, only \"facing\" and \"type\" will affect the structure.\nSo, block in you structure can not be well converted, I'm working on it!\n\n• Block which ave no representation in hand like water, cocoa, piston head or lit redstone lamps won't be present\n\n• Also, the structure will (for now) appear from the origin point", "Information");
 			};
 
 			helpDropDownMenu.DropDownItems.AddRange(new ToolStripItem[] { creditMenu, helpMenu , infoMenu });

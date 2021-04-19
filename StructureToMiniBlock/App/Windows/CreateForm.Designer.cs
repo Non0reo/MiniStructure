@@ -37,6 +37,9 @@ namespace StructureToMiniBlock.App.Windows
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -128,11 +131,45 @@ namespace StructureToMiniBlock.App.Windows
             this.label3.Text = "---";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(605, 35);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(183, 158);
+            this.richTextBox1.TabIndex = 7;
+            this.richTextBox1.Text = "";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(637, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 23);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Tag (one per line) :";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(613, 12);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(18, 17);
+            this.checkBox2.TabIndex = 9;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
+            // 
             // CreateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
@@ -146,6 +183,7 @@ namespace StructureToMiniBlock.App.Windows
             this.Text = "CreateForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateForm_FormClosed);
             this.Load += new System.EventHandler(this.CreateForm_Load);
+            this.Resize += new System.EventHandler(this.CreateForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,5 +198,8 @@ namespace StructureToMiniBlock.App.Windows
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

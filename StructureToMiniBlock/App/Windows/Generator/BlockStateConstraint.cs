@@ -115,6 +115,46 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
         }
 
+        public double MoveMiniBlockDueToFacingX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += -0.4635;
+                    return x;
+                case "west":
+                    x += -0.2;
+                    return x;
+                case "north":
+                    x += -0.663;
+                    return x;
+                case "south":
+                    return x;
+                default:
+                    return x;
+            }
+        }
+
+        public double MoveMiniBlockDueToFacingZ(double z, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    z += -0.2;
+                    return z;
+                case "west":
+                    z += 0.4635;
+                    return z;
+                case "north":
+                    z += 0.262;
+                    return z;
+                case "south":
+                    return z;
+                default:
+                    return z;
+            }
+        }
+
 
         public string RotateArmorStandHead(ArrayList block, int where)
         {

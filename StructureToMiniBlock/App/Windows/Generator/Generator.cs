@@ -136,16 +136,13 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         if (block[i + 3].ToString().Contains("stairs") == true || block[i + 3].ToString().Contains("observer") == true)
                                         {
                                             block[i + 4] = constraint.ChangeFacingStairs(block[i + 4].ToString());
-                                            if (block[i + 3].ToString().Contains("anvil") == true)
-                                            {
-                                                block[i + 4] = constraint.ChangeFacingStairs(block[i + 4].ToString());
-                                            }
                                         }
-                                        else
+                                        if (block[i + 3].ToString().Contains("chest") == true || block[i + 3].ToString().Contains("trapped_chest") == true)
                                         {
                                             block[i + 4] = constraint.ChangeFacing(block[i + 4].ToString());
                                         }
-                                    } else
+                                    
+                                } else
                                     {
                                         if ((block[i + 3].ToString()).Contains("stairs") == true || (block[i + 3].ToString()).Contains("observer") == true)
                                         {
@@ -154,19 +151,46 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         }
                                     }
 
-                                    if (block[i + 4].ToString() != "null" && onArm == 1 && small == 0)
+                                    if (block[i + 4].ToString() != "null" && paramSize == 3)
                                     {
                                         x = constraint.MoveBlockDueToFacingX(x, block, i);
                                         z = constraint.MoveBlockDueToFacingZ(z, block, i);
+                                    }
+                                    if (block[i + 4].ToString() != "null" && paramSize == 4)
+                                    {
+                                        x = constraint.MoveMiniBlockDueToFacingX(x, block, i);
+                                        z = constraint.MoveMiniBlockDueToFacingZ(z, block, i);
                                     }
 
                                     string xString = x.ToString();
                                     string yString = y.ToString();
                                     string zString = z.ToString();
-                                    //              ↓ block[data[3]]   block[data[3[palette[state[0]]]]]
                                     string data = block[i + 3].ToString();
                                     byte[] info = new UTF8Encoding(true).GetBytes("summon armor_stand ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invisible:1b,Invulnerable:1b,PersistenceRequired:1b");
                                     fs.Write(info, 0, info.Length);
+                                    string presentTags = "";
+                                    if (CreateForm.tag == true)
+                                    {
+                                        info = new UTF8Encoding(true).GetBytes(",Tags:[\"");
+                                        fs.Write(info, 0, info.Length);
+
+                                        for (int j = 0; j < CreateForm.tagsList.Length; j++)
+                                        {
+                                            if (CreateForm.tagsList[j] != "")
+                                            {
+                                                presentTags = CreateForm.tagsList[j];
+                                                info = new UTF8Encoding(true).GetBytes(presentTags.ToString().Replace(" ", "_"));
+                                                fs.Write(info, 0, info.Length);
+                                                if (j != CreateForm.tagsList.Length - 1)
+                                                {
+                                                    info = new UTF8Encoding(true).GetBytes("\",\"");
+                                                    fs.Write(info, 0, info.Length);
+                                                }
+                                            }
+                                        }
+                                        info = new UTF8Encoding(true).GetBytes("\"]");
+                                        fs.Write(info, 0, info.Length);
+                                    }
                                     string rotation = "";
                                     if (block[i + 4].ToString() != "null" && onArm == 0)
                                     {
