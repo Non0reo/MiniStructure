@@ -212,5 +212,14 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
             return temp;
         }
+
+        /*public double MoveFlatItem(double x, ArrayList block, int where, byte paramSize)
+        {
+            switch (paramSize)
+            {
+                case 1:
+                    break;
+            } 
+        }*/
     }
 }

@@ -19,6 +19,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
         public static byte paramSize = 1;
         public SaveFileDialog saveFileDialog;
         const string pose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[345f,45f,0f]}";
+        //~ ~0.08 ~0.192
+        //~ ~0.1142 ~0.26976
+        const string horizontalPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[-90f,0f,0f]}";
+        //~-0.29 ~-0.38 ~-0.3
+        //~-0.145 ~-0.19 ~-0.15
         BlockStateConstraint constraint = new BlockStateConstraint();
         SpecialBlocks specialBlocks = new SpecialBlocks();
 
@@ -151,6 +156,31 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         }
                                     }
 
+                                    //~ ~0.08 ~0.192
+                                    //~ ~0.1142 ~0.26976
+                                    //~-0.29 ~-0.38 ~-0.3
+                                    //~-0.145 ~-0.19 ~-0.15
+
+                                    if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
+                                    {
+                                        switch (paramSize)
+                                        {
+                                            case 1:
+                                                y += -0.5107;
+                                                z += 0.26976;
+                                                break;
+                                            case 2:
+                                                y += -0.3575;
+                                                z += 0.192;
+                                                break;
+                                            case 3:
+                                                x += -0.29;
+                                                y -= 0.7545;
+                                                z += -0.3;
+                                                break;
+                                        }
+                                    }
+
                                     if (block[i + 4].ToString() != "null" && paramSize == 3)
                                     {
                                         x = constraint.MoveBlockDueToFacingX(x, block, i);
@@ -210,8 +240,17 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         fs.Write(info, 0, info.Length);
                                     } else
                                     {
-                                        info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Remove(0, 10) + "\",Count:1b},{}],DisabledSlots:4144959," + pose + "}\n");
+                                        info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Remove(0, 10) + "\",Count:1b},{}],DisabledSlots:4144959,");
                                         fs.Write(info, 0, info.Length);
+                                        if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes(horizontalPose + "}\n");
+                                            fs.Write(info, 0, info.Length);
+                                        } else
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes(pose + "}\n");
+                                            fs.Write(info, 0, info.Length);
+                                        }
                                     }
                                 } else
                                 {
