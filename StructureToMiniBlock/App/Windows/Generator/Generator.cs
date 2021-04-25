@@ -69,7 +69,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         public void createFile(int[] size, ArrayList block, int count)
         {
             saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Title = "Place your file somewere";
+            saveFileDialog.Title = "Place your file somewhere";
             saveFileDialog.Filter = "mcfunction|*.mcfunction";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -175,8 +175,13 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                 break;
                                             case 3:
                                                 x += -0.29;
-                                                y -= 0.7545;
+                                                y += -0.7545;
                                                 z += -0.3;
+                                                break;
+                                            case 4:
+                                                x += -0.145;
+                                                y += -0.37725;
+                                                z += -0.15;
                                                 break;
                                         }
                                     }
