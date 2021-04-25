@@ -221,6 +221,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         info = new UTF8Encoding(true).GetBytes("\"]");
                                         fs.Write(info, 0, info.Length);
                                     }
+                                    if (MoreOptionsForm.team == true)
+                                    {
+                                        info = new UTF8Encoding(true).GetBytes(",Team:\"");
+                                        fs.Write(info, 0, info.Length);
+
+                                                info = new UTF8Encoding(true).GetBytes(MoreOptionsForm.teamList.ToString().Replace(" ", "_") + "\"");
+                                                fs.Write(info, 0, info.Length);
+                                    }
+
                                     string rotation = "";
                                     if (block[i + 4].ToString() != "null" && onArm == 0)
                                     {

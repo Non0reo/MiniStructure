@@ -140,6 +140,7 @@ namespace StructureToMiniBlock.App.Windows
             this.richTextBox1.Size = new System.Drawing.Size(183, 158);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // label4
             // 
@@ -175,6 +176,7 @@ namespace StructureToMiniBlock.App.Windows
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "More Options";
             this.linkLabel1.VisitedLinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // CreateForm
             // 

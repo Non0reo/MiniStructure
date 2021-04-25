@@ -145,10 +145,30 @@ namespace StructureToMiniBlock.App.Windows
             {
                 richTextBox1.ReadOnly = true;
                 richTextBox1.Enabled = false;
-                richTextBox1.ForeColor = System.Drawing.Color.Transparent;
+                //richTextBox1.ForeColor = System.Drawing.Color.Transparent;
             }
             tag = !tag;
         }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            linkLabel1.Enabled = false;
+            Generator.MoreOptionsForm moreOptionsForm = new Generator.MoreOptionsForm();
+            moreOptionsForm.ShowDialog();
+            linkLabel1.Enabled = true;
+
+
+
+        }
+
+        public void setToEnabled()
+        {
+            linkLabel1.Enabled = true;
+        }
     }
 }
