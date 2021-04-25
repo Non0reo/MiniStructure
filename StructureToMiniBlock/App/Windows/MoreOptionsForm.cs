@@ -53,10 +53,20 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
         private void MoreOptionsForm_Load(object sender, EventArgs e)
         {
-            team = false;
-            checkBox2.Checked = false;
-            textBox1.ReadOnly = true;
-            textBox1.Enabled = false;
+            if (team == false)
+            {
+                team = false;
+                checkBox2.Checked = false;
+                textBox1.ReadOnly = true;
+                textBox1.Enabled = false;
+            } else
+            {
+                team = true;
+                checkBox2.Checked = true;
+                textBox1.ReadOnly = false;
+                textBox1.Enabled = true;
+            }
+            textBox1.Text = teamList;
         }
 
         private void MoreOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
