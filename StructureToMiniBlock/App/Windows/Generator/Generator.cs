@@ -77,23 +77,25 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 var nbt = new ArrayList();
                 
                 try
-                { 
+                {
                     using (FileStream fs = File.Create(path))
                     {
 
                         byte[] info2 = new UTF8Encoding(true).GetBytes("###################################################################################\n##																				 ##\n##     Made with the MiniStrucure generator - by NoNOréo                         ##\n##																				 ##\n###################################################################################\n\n");
                         fs.Write(info2, 0, info2.Length);
 
-                        for (int i = 0; i < (count*6); i = i + 6)
+                        for (int i = 0; i < (count * 6); i = i + 6)
                         {
-                            if (block[i+3].ToString().Contains("minecraft:air") == false) {
+                            if (block[i + 3].ToString().Contains("minecraft:air") == false)
+                            {
                                 if (block[i + 3].ToString().Contains("minecraft:cave_air") == false)
                                 {
                                     double x = float.Parse((string)block[i]) / constant;
                                     double y = float.Parse((string)block[i + 1]) / constant;
                                     double z = float.Parse((string)block[i + 2]) / constant;
 
-                                    if (block[i + 3].ToString().Contains("slab") == true) {
+                                    if (block[i + 3].ToString().Contains("slab") == true)
+                                    {
                                         switch (block[i + 5].ToString())
                                         {
                                             case "double":
@@ -105,7 +107,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                 if (a == true)
                                                 {
                                                     block[i + 3] = block[i + 3].ToString().Replace("slab", "planks");
-                                                } if (b == true)
+                                                }
+                                                if (b == true)
                                                 {
                                                     block[i + 3] = block[i + 3].ToString().Replace("_slab", "");
                                                 }
@@ -146,8 +149,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             block[i + 4] = constraint.ChangeFacing(block[i + 4].ToString());
                                         }
-                                    
-                                } else
+
+                                    }
+                                    else
                                     {
                                         if ((block[i + 3].ToString()).Contains("stairs") == true || (block[i + 3].ToString()).Contains("observer") == true)
                                         {
@@ -167,7 +171,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             case 1:
                                                 y += -0.5107;
-                                                z += 0.26976;
+                                                z += 0.12776;
                                                 break;
                                             case 2:
                                                 y += -0.3575;
@@ -182,6 +186,29 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                 x += -0.145;
                                                 y += -0.37725;
                                                 z += -0.15;
+                                                break;
+                                        }
+                                    }
+
+                                    if (MoreOptionsForm.coolPlants == true && Array.Exists<string>(specialBlocks.paperPlant, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
+                                    {
+                                        switch (paramSize)
+                                        {
+                                            case 1:
+                                                x += -0.195;
+                                                z += 0.07776;
+                                                break;
+                                            case 2:
+                                                x += -0.13879;
+                                                z += -0.06335;
+                                                break;
+                                            case 3:
+                                                x += 0.29;
+                                                z += 0.43;
+                                                break;
+                                            case 4:
+                                                x += 0.145;
+                                                z += 0.215;
                                                 break;
                                         }
                                     }
@@ -231,8 +258,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         info = new UTF8Encoding(true).GetBytes(",Team:\"");
                                         fs.Write(info, 0, info.Length);
 
-                                                info = new UTF8Encoding(true).GetBytes(MoreOptionsForm.teamList.ToString().Replace(" ", "_") + "\"");
-                                                fs.Write(info, 0, info.Length);
+                                        info = new UTF8Encoding(true).GetBytes(MoreOptionsForm.teamList.ToString().Replace(" ", "_") + "\"");
+                                        fs.Write(info, 0, info.Length);
                                     }
 
                                     string rotation = "";
@@ -244,15 +271,22 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     {
                                         rotation = constraint.RotateArmorStandArm(block, i);
                                     }
+
+                                    if (MoreOptionsForm.coolPlants == true && Array.Exists<string>(specialBlocks.paperPlant, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
+                                    {
+                                        rotation = ",Rotation:[45f]";
+                                    }
                                     info = new UTF8Encoding(true).GetBytes(rotation);
                                     fs.Write(info, 0, info.Length);
 
                                     info = new UTF8Encoding(true).GetBytes(",NoBasePlate:1b,Small:" + small + "b,NoGravity:" + noGravity + "b,Marker:" + marker + "b,");
                                     fs.Write(info, 0, info.Length);
-                                    if (onArm == 0) {
+                                    if (onArm == 0)
+                                    {
                                         info = new UTF8Encoding(true).GetBytes("ArmorItems:[{},{},{},{id:\"" + data.Remove(0, 10) + "\",Count:1b}],DisabledSlots:4144959}\n");
                                         fs.Write(info, 0, info.Length);
-                                    } else
+                                    }
+                                    else
                                     {
                                         info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Remove(0, 10) + "\",Count:1b},{}],DisabledSlots:4144959,");
                                         fs.Write(info, 0, info.Length);
@@ -260,22 +294,108 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             info = new UTF8Encoding(true).GetBytes(horizontalPose + "}\n");
                                             fs.Write(info, 0, info.Length);
-                                        } else
+                                        }
+                                        else
                                         {
                                             info = new UTF8Encoding(true).GetBytes(pose + "}\n");
                                             fs.Write(info, 0, info.Length);
                                         }
                                     }
-                                } else
+
+                                    if (MoreOptionsForm.coolPlants == true && Array.Exists<string>(specialBlocks.paperPlant, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
+                                    {
+                                        if (MoreOptionsForm.coolPlants == true && Array.Exists<string>(specialBlocks.paperPlant, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
+                                        {
+                                            switch (paramSize)
+                                            {
+                                                case 1:
+                                                    x += 0.39;
+                                                    break;
+                                                case 2:
+                                                    x += 0.27758;
+                                                    break;
+                                                case 3:
+                                                    x += -0.8;
+                                                    z += -0.53;
+                                                    break;
+                                                case 4:
+                                                    x += -0.4;
+                                                    z += -0.265;
+                                                    break;
+                                            }
+                                        }
+                                        xString = x.ToString();
+                                        yString = y.ToString();
+                                        zString = z.ToString();
+                                        info = new UTF8Encoding(true).GetBytes("summon armor_stand ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invisible:1b,Invulnerable:1b,PersistenceRequired:1b");
+                                        fs.Write(info, 0, info.Length);
+                                        if (CreateForm.tag == true)
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes(",Tags:[\"");
+                                            fs.Write(info, 0, info.Length);
+
+                                            for (int j = 0; j < CreateForm.tagsList.Length; j++)
+                                            {
+                                                if (CreateForm.tagsList[j] != "")
+                                                {
+                                                    presentTags = CreateForm.tagsList[j];
+                                                    info = new UTF8Encoding(true).GetBytes(presentTags.ToString().Replace(" ", "_"));
+                                                    fs.Write(info, 0, info.Length);
+                                                    if (j != CreateForm.tagsList.Length - 1)
+                                                    {
+                                                        info = new UTF8Encoding(true).GetBytes("\",\"");
+                                                        fs.Write(info, 0, info.Length);
+                                                    }
+                                                }
+                                            }
+                                            info = new UTF8Encoding(true).GetBytes("\"]");
+                                            fs.Write(info, 0, info.Length);
+                                        }
+                                        if (MoreOptionsForm.team == true)
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes(",Team:\"");
+                                            fs.Write(info, 0, info.Length);
+
+                                            info = new UTF8Encoding(true).GetBytes(MoreOptionsForm.teamList.ToString().Replace(" ", "_") + "\"");
+                                            fs.Write(info, 0, info.Length);
+                                        }
+                                        info = new UTF8Encoding(true).GetBytes(",Rotation:[-45f],NoBasePlate:1b,Small:" + small + "b,NoGravity:" + noGravity + "b,Marker:" + marker + "b,");
+                                        fs.Write(info, 0, info.Length);
+                                        if (onArm == 0)
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes("ArmorItems:[{},{},{},{id:\"" + data.Remove(0, 10) + "\",Count:1b}],DisabledSlots:4144959}\n");
+                                            fs.Write(info, 0, info.Length);
+                                        }
+                                        else
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Remove(0, 10) + "\",Count:1b},{}],DisabledSlots:4144959,");
+                                            fs.Write(info, 0, info.Length);
+                                            if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
+                                            {
+                                                info = new UTF8Encoding(true).GetBytes(horizontalPose + "}\n");
+                                                fs.Write(info, 0, info.Length);
+                                            }
+                                            else
+                                            {
+                                                info = new UTF8Encoding(true).GetBytes(pose + "}\n");
+                                                fs.Write(info, 0, info.Length);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                }
+                                else
                                 {
 
                                 }
-                            } else {
-
-                            } 
+                            }
                         }
                     }
-                }
+
+                    }
 
                 catch (Exception ex)
                 {

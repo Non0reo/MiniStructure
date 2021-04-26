@@ -12,6 +12,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
     public partial class MoreOptionsForm : Form
     {
         public static bool team = false;
+        public static bool coolPlants = false;
         public static string teamList = "";
         CreateForm createForm = new CreateForm();
 
@@ -67,6 +68,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 textBox1.Enabled = true;
             }
             textBox1.Text = teamList;
+
+            if (coolPlants == false)
+            {
+                checkBox1.Checked = false;
+            }
+            else if (coolPlants == true)
+            {
+                checkBox1.Checked = true;
+            }
         }
 
         private void MoreOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -80,10 +90,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
             teamList = textBox1.Text;
         }
 
-
-        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        private void checkBox1_Click(object sender, EventArgs e)
         {
-
+            coolPlants = !coolPlants;
         }
     }
 }

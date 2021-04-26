@@ -87,7 +87,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "Better Plants";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
             // MoreOptionsForm
             // 

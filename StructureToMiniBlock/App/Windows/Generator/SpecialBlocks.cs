@@ -245,7 +245,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
             "dead_bubble_coral",
             "dead_fire_coral",
             "dead_horn_coral",
-            "dead_tube_coral"
+            "dead_tube_coral",
+            "chain"
 };
     }
 }
