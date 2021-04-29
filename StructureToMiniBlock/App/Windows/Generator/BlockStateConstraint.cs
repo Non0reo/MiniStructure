@@ -37,6 +37,25 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 listblock.Add("null");
             }
 
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("rotation") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("rotation").StringValue);
+            }
+            else
+            {
+                listblock.Add("null");
+            }
+
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("snowy") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("snowy").StringValue);
+            }
+            else
+            {
+                listblock.Add("null");
+            }
+
+
             return listblock;  
         } 
 
@@ -211,6 +230,23 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 }
 
             return temp;
+        }
+
+        public string RotateSigns(ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    return ",Rotation:[-90f]";
+                case "west":
+                    return ",Rotation:[90f]";
+                case "north":
+                    return ",Rotation:[180f]";
+                case "south":
+                    return "";
+                default:
+                    return "";
+            }
         }
 
         /*public double MoveFlatItem(double x, ArrayList block, int where, byte paramSize)

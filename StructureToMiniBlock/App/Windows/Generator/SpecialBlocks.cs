@@ -148,7 +148,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             "dead_horn_coral_fan",
             "oak_sign",
             "spruce_sign",
-            "brich_sign",
+            "birch_sign",
             "jungle_sign",
             "acacia_sign",
             "dark_oak_sign",
@@ -247,6 +247,13 @@ namespace StructureToMiniBlock.App.Windows.Generator
             "dead_horn_coral",
             "dead_tube_coral",
             "chain"
-};
+        };
+
+        public string[] transformToSnow = new string[]
+        {
+            "grass_block",
+            "mycelium",
+            "podzol"
+        };
     }
 }

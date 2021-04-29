@@ -66,7 +66,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
 
 
-        public void createFile(int[] size, ArrayList block, int count)
+        public void createFile(int[] size, ArrayList block, int count, int multiplier)
         {
             saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "Place your file somewhere";
@@ -84,7 +84,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                         byte[] info2 = new UTF8Encoding(true).GetBytes("###################################################################################\n##																				 ##\n##     Made with the MiniStrucure generator - by NoNOréo                         ##\n##																				 ##\n###################################################################################\n\n");
                         fs.Write(info2, 0, info2.Length);
 
-                        for (int i = 0; i < (count * 6); i = i + 6)
+                        for (int i = 0; i < (count * multiplier); i = i + multiplier)
                         {
                             if (block[i + 3].ToString().Contains("minecraft:air") == false)
                             {
@@ -224,6 +224,13 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         z = constraint.MoveMiniBlockDueToFacingZ(z, block, i);
                                     }
 
+                                    if (MoreOptionsForm.toSnowBlock == true &&
+                                        Array.Exists<string>(specialBlocks.transformToSnow, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true &&
+                                        block[i + 7].ToString() == "true")
+                                    {
+                                        block[i + 3] = "minecraft:snow_block";
+                                    }
+
                                     string xString = x.ToString();
                                     string yString = y.ToString();
                                     string zString = z.ToString();
@@ -281,14 +288,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
                                     info = new UTF8Encoding(true).GetBytes(",NoBasePlate:1b,Small:" + small + "b,NoGravity:" + noGravity + "b,Marker:" + marker + "b,");
                                     fs.Write(info, 0, info.Length);
+
                                     if (onArm == 0)
                                     {
-                                        info = new UTF8Encoding(true).GetBytes("ArmorItems:[{},{},{},{id:\"" + data.Remove(0, 10) + "\",Count:1b}],DisabledSlots:4144959}\n");
+                                        info = new UTF8Encoding(true).GetBytes("ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959}\n");
                                         fs.Write(info, 0, info.Length);
                                     }
                                     else
                                     {
-                                        info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Remove(0, 10) + "\",Count:1b},{}],DisabledSlots:4144959,");
+                                        info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b},{}],DisabledSlots:4144959,");
                                         fs.Write(info, 0, info.Length);
                                         if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
                                         {

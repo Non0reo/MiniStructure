@@ -13,6 +13,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
     {
         public static bool team = false;
         public static bool coolPlants = false;
+        public static bool toSnowBlock = true;
         public static string teamList = "";
         CreateForm createForm = new CreateForm();
 
@@ -73,9 +74,18 @@ namespace StructureToMiniBlock.App.Windows.Generator
             {
                 checkBox1.Checked = false;
             }
-            else if (coolPlants == true)
+            else
             {
                 checkBox1.Checked = true;
+            }
+
+            if (toSnowBlock == false)
+            {
+                checkBox3.Checked = false;
+            }
+            else
+            {
+                checkBox3.Checked = true;
             }
         }
 
@@ -93,6 +103,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox1_Click(object sender, EventArgs e)
         {
             coolPlants = !coolPlants;
+        }
+
+        private void checkBox3_Click(object sender, EventArgs e)
+        {
+            toSnowBlock = !toSnowBlock;
         }
     }
 }
