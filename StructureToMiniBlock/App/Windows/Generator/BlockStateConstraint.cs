@@ -93,7 +93,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
         }
 
-
+        //Facing
         public double MoveBlockDueToFacingX(double x, ArrayList block, int where)
         {
             switch (block[where + 4])
@@ -174,6 +174,134 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
         }
 
+        //Rotation
+         public double MoveBlockDueToRotationX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 6])
+            {
+                //south
+                case "0":
+                case "8":
+                    return x;
+                case "1":
+                case "9":
+                    x += -0.1;
+                    return x;
+                case "2":
+                case "10":
+                    x += -0.195;
+                    return x;
+                case "3":
+                case "11":
+                    x += -0.26;
+                    return x;
+                //west
+                case "4":
+                case "12":
+                    x += -0.275;
+                    return x;
+                //west
+                case "5":
+                case "13":
+                    x += -0.26;
+                    return x;
+                case "6":
+                case "14":
+                    x += -0.23;
+                    return x;
+                case "7":
+                case "15":
+                    x += -0.1;
+                    return x;
+
+                default:
+                    return x;
+            }
+        }
+
+        public double MoveBlockDueToRotationZ(double z, ArrayList block, int where)
+        {
+            switch (block[where + 6])
+            {
+                //south
+                case "0":
+                case "8":
+                    return z;
+                case "1":
+                case "9":
+                    z += -0.02;
+                    return z;
+                case "2":
+                case "10":
+                    z += -0.09;
+                    return z;
+                case "3":
+                case "11":
+                    z += -0.17;
+                    return z;
+                //west
+                case "4":
+                case "12":
+                    z += -0.272;
+                    return z;
+                case "5":
+                case "13":
+                    z += -0.37;
+                    return z;
+                case "6":
+                case "14":
+                    z += -0.46;
+                    return z;
+                case "7":
+                case "15":
+                    z += -0.52;
+                    return z;
+
+                default:
+                    return z;
+            }
+        }
+
+        public double MoveMiniBlockDueToRotationX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += -0.4635;
+                    return x;
+                case "west":
+                    x += -0.2;
+                    return x;
+                case "north":
+                    x += -0.663;
+                    return x;
+                case "south":
+                    return x;
+                default:
+                    return x;
+            }
+        }
+
+        public double MoveMiniBlockDueToRotationZ(double z, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    z += -0.2;
+                    return z;
+                case "west":
+                    z += 0.4635;
+                    return z;
+                case "north":
+                    z += 0.262;
+                    return z;
+                case "south":
+                    return z;
+                default:
+                    return z;
+            }
+        }
+
 
         public string RotateArmorStandHead(ArrayList block, int where)
         {
@@ -204,6 +332,39 @@ namespace StructureToMiniBlock.App.Windows.Generator
                     return ",Rotation:[180f]";
                 case "south":
                     return "";
+                default:
+                    return "";
+            }
+        }
+
+        public string RotateArmorStandSign(ArrayList block, int where)
+        {
+            switch (block[where + 6])
+            {
+                case "0":
+                case "8":
+                    return "";
+                case "1":
+                case "9":
+                    return ",Rotation:[22.5f]";
+                case "2":
+                case "10":
+                    return ",Rotation:[45f]";
+                case "3":
+                case "11":
+                    return ",Rotation:[67.5f]";
+                case "4":
+                case "12":
+                    return ",Rotation:[90f]";
+                case "5":
+                case "13":
+                    return ",Rotation:[112.5f]";
+                case "6":
+                case "14":
+                    return ",Rotation:[135f]";
+                case "7":
+                case "15":
+                    return ",Rotation:[157.5f]";
                 default:
                     return "";
             }

@@ -94,6 +94,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     double y = float.Parse((string)block[i + 1]) / constant;
                                     double z = float.Parse((string)block[i + 2]) / constant;
 
+                                    //Slab
                                     if (block[i + 3].ToString().Contains("slab") == true)
                                     {
                                         switch (block[i + 5].ToString())
@@ -160,6 +161,29 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         }
                                     }
 
+
+                                    //Rotation
+                                    if (block[i + 6].ToString() != "null" && paramSize == 1)
+                                    {
+                                        x = constraint.MoveBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveBlockDueToRotationZ(z, block, i);
+                                    }
+                                    if (block[i + 7].ToString() != "null" && paramSize == 2)
+                                    {
+                                        x = constraint.MoveMiniBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveMiniBlockDueToRotationZ(z, block, i);
+                                    }
+                                    if (block[i + 7].ToString() != "null" && paramSize == 3)
+                                    {
+                                        x = constraint.MoveBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveBlockDueToRotationZ(z, block, i);
+                                    }
+                                    if (block[i + 7].ToString() != "null" && paramSize == 4)
+                                    {
+                                        x = constraint.MoveMiniBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveMiniBlockDueToRotationZ(z, block, i);
+                                    }
+
                                     //~ ~0.08 ~0.192
                                     //~ ~0.1142 ~0.26976
                                     //~-0.29 ~-0.38 ~-0.3
@@ -171,7 +195,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             case 1:
                                                 y += -0.5107;
-                                                z += 0.12776;
+                                                z += 0.27276;
                                                 break;
                                             case 2:
                                                 y += -0.3575;
@@ -196,7 +220,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             case 1:
                                                 x += -0.195;
-                                                z += 0.07776;
+                                                z += -0.1;
                                                 break;
                                             case 2:
                                                 x += -0.13879;
@@ -213,6 +237,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         }
                                     }
 
+                                    //Facing
                                     if (block[i + 4].ToString() != "null" && paramSize == 3)
                                     {
                                         x = constraint.MoveBlockDueToFacingX(x, block, i);
@@ -223,6 +248,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         x = constraint.MoveMiniBlockDueToFacingX(x, block, i);
                                         z = constraint.MoveMiniBlockDueToFacingZ(z, block, i);
                                     }
+
+
 
                                     if (MoreOptionsForm.toSnowBlock == true &&
                                         Array.Exists<string>(specialBlocks.transformToSnow, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true &&
@@ -270,13 +297,20 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     }
 
                                     string rotation = "";
-                                    if (block[i + 4].ToString() != "null" && onArm == 0)
+                                    //Facing
+                                    if (block[i + 4].ToString() != "null")
                                     {
                                         rotation = constraint.RotateArmorStandHead(block, i);
                                     }
-                                    else if (block[i + 4].ToString() != "null" && onArm == 1)
+                                    /*else if (block[i + 4].ToString() != "null" && onArm == 1)
                                     {
                                         rotation = constraint.RotateArmorStandArm(block, i);
+                                    }*/
+
+                                    //Rotation
+                                    if (block[i + 6].ToString() != "null")
+                                    {
+                                        rotation = constraint.RotateArmorStandSign(block, i);
                                     }
 
                                     if (MoreOptionsForm.coolPlants == true && Array.Exists<string>(specialBlocks.paperPlant, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
@@ -318,6 +352,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             {
                                                 case 1:
                                                     x += 0.39;
+                                                    //z +=- -0.3657;
                                                     break;
                                                 case 2:
                                                     x += 0.27758;
