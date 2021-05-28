@@ -28,7 +28,7 @@ namespace StructureToMiniBlock.Controls
 
 		public void FileDropDownMenu()
 		{
-			var fileDropDownMenu = new ToolStripMenuItem("Fichier");
+			var fileDropDownMenu = new ToolStripMenuItem("File");
 
 			//var newMenu = new ToolStripMenuItem("New", null, null, Keys.Control | Keys.N);
 			var openMenu = new ToolStripMenuItem("Open", null, null, Keys.Control | Keys.O);
