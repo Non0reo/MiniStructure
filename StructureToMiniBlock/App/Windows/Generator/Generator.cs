@@ -105,30 +105,13 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                 bool c = Array.Exists<string>(specialBlocks.brick, element => element.Contains(block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "")));
                                                 bool d = Array.Exists<string>(specialBlocks.slabToBlock, element => element.Contains(block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "")));
 
-                                                if (a == true)
-                                                {
-                                                    block[i + 3] = block[i + 3].ToString().Replace("slab", "planks");
-                                                }
-                                                if (b == true)
-                                                {
-                                                    block[i + 3] = block[i + 3].ToString().Replace("_slab", "");
-                                                }
-                                                if (c == true)
-                                                {
-                                                    block[i + 3] = block[i + 3].ToString().Replace("_slab", "s");
-                                                }
-                                                if (d == true)
-                                                {
-                                                    block[i + 3] = block[i + 3].ToString().Replace("_slab", "_block");
-                                                }
-                                                if (block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "") == "petrified_oak")
-                                                {
-                                                    block[i + 3] = "minecraft:oak_planks";
-                                                }
-                                                if (block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "") == "quartz")
-                                                {
-                                                    block[i + 3] = "minecraft:quartz_block";
-                                                }
+                                                if (a == true) block[i + 3] = block[i + 3].ToString().Replace("slab", "planks");
+                                                if (b == true) block[i + 3] = block[i + 3].ToString().Replace("_slab", "");
+                                                if (c == true) block[i + 3] = block[i + 3].ToString().Replace("_slab", "s");
+                                                if (d == true) block[i + 3] = block[i + 3].ToString().Replace("_slab", "_block");
+
+                                                if (block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "") == "petrified_oak") block[i + 3] = "minecraft:oak_planks";
+                                                if (block[i + 3].ToString().Replace("_slab", "").Replace("minecraft:", "") == "quartz") block[i + 3] = "minecraft:quartz_block";
 
                                                 break;
                                             case "top":
@@ -165,20 +148,20 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     //Rotation
                                     if (block[i + 6].ToString() != "null" && paramSize == 1)
                                     {
-                                        x = constraint.MoveBlockDueToRotationX(x, block, i);
-                                        z = constraint.MoveBlockDueToRotationZ(z, block, i);
+                                        x = constraint.MoveBigBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveBigBlockDueToRotationZ(z, block, i);
                                     }
-                                    if (block[i + 7].ToString() != "null" && paramSize == 2)
+                                    if (block[i + 6].ToString() != "null" && paramSize == 2)
                                     {
-                                        x = constraint.MoveMiniBlockDueToRotationX(x, block, i);
-                                        z = constraint.MoveMiniBlockDueToRotationZ(z, block, i);
+                                        x = constraint.MoveNormalBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveNormalBlockDueToRotationZ(z, block, i);
                                     }
-                                    if (block[i + 7].ToString() != "null" && paramSize == 3)
+                                    if (block[i + 6].ToString() != "null" && paramSize == 3)
                                     {
-                                        x = constraint.MoveBlockDueToRotationX(x, block, i);
-                                        z = constraint.MoveBlockDueToRotationZ(z, block, i);
+                                        x = constraint.MoveSmallBlockDueToRotationX(x, block, i);
+                                        z = constraint.MoveSmallBlockDueToRotationZ(z, block, i);
                                     }
-                                    if (block[i + 7].ToString() != "null" && paramSize == 4)
+                                    if (block[i + 6].ToString() != "null" && paramSize == 4)
                                     {
                                         x = constraint.MoveMiniBlockDueToRotationX(x, block, i);
                                         z = constraint.MoveMiniBlockDueToRotationZ(z, block, i);
