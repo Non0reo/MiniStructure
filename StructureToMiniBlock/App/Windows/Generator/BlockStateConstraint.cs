@@ -55,6 +55,14 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 listblock.Add("null");
             }
 
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("half") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("half").StringValue);
+            }
+            else
+            {
+                listblock.Add("null");
+            }
 
             return listblock;  
         } 

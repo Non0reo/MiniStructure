@@ -76,7 +76,8 @@ namespace StructureToMiniBlock.App.Windows
             "Big (0.625 block)",
             "Normal (0.4375 block)",
             "Small (0.3745 block)",
-            "Mini (0.1874 block)"});
+            "Mini (0.1874 block)",
+            "Equal (1 block)"});
             this.comboBox1.Location = new System.Drawing.Point(67, 165);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(187, 28);

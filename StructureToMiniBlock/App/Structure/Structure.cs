@@ -10,7 +10,7 @@ namespace StructureToMiniBlock.App.Struture
     {
         public static int[] size = new int[3];
         public static int count;
-        public string [] data = new string[8];
+        public string [] data = new string[9];
         public List<List<string>> palette = new List<List<string>>();
         //public List<string> palette = new List<string>();
         //public List<string> blockAndNbt = new List<string>();
@@ -52,28 +52,11 @@ namespace StructureToMiniBlock.App.Struture
                 {
                     BlockStateConstraint bSC = new BlockStateConstraint();
                     palette.Add(bSC.BlockStates(file, i));
-
-                    /*if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true)
-                    {
-                        palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue });
-                    } else
-                    {
-                        palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null" });
-                    }*/
                 }
                 else
                 {
-                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null", "null", "null", "null" });
+                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null", "null", "null", "null", "null" });
                 }
-                
-                /*for (int j = 0; j < nbtBlock.Count; j++)
-                {
-                    blockAndNbt.Add(nbtBlock.Get<NbtString>("facing").StringValue);
-                }*/
-
-                //palette.Add(blockAndNbt.ToString());
-
-                //MessageBox.Show(palette[i].ToString());
             }
         }
 
@@ -109,6 +92,7 @@ namespace StructureToMiniBlock.App.Struture
                                 data[5] = palette[state][2];
                                 data[6] = palette[state][3];
                                 data[7] = palette[state][4];
+                                data[8] = palette[state][5];
 
                                 block.AddRange(data);
                             } 
