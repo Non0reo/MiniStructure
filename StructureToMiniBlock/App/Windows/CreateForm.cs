@@ -30,11 +30,6 @@ namespace StructureToMiniBlock.App.Windows
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
             var structFunction = new Generator.Generator();
@@ -169,6 +164,16 @@ namespace StructureToMiniBlock.App.Windows
         public void setToEnabled()
         {
             linkLabel1.Enabled = true;
+        }
+
+        private void comboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

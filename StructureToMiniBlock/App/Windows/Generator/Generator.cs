@@ -259,7 +259,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     byte[] info = new UTF8Encoding(true).GetBytes("");
 
                                     if (paramSize != 5) info = new UTF8Encoding(true).GetBytes("summon armor_stand ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invisible:1b,Invulnerable:1b,NoBasePlate:1b");
-                                    if (paramSize == 5) info = new UTF8Encoding(true).GetBytes("summon falling_block ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invulnerable:1b,Time:-2147483648");
+                                    if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true) info = new UTF8Encoding(true).GetBytes("summon armor_stand ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invisible:1b,Invulnerable:1b,NoBasePlate:1b");
+                                    if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == false) info = new UTF8Encoding(true).GetBytes("summon falling_block ~" + xString.Replace(",", ".") + " ~" + yString.Replace(",", ".") + " ~" + zString.Replace(",", ".") + " {Invulnerable:1b,Time:-2147483648");
                                     fs.Write(info, 0, info.Length);
                                     string presentTags = "";
                                     if (CreateForm.tag == true)
@@ -305,14 +306,14 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             rotation = ",Rotation:[45f]";
                                         info = new UTF8Encoding(true).GetBytes(rotation);
                                         fs.Write(info, 0, info.Length);
-                                        info = new UTF8Encoding(true).GetBytes(",Small:" + small + "b,Marker:" + marker + "b");
+                                        info = new UTF8Encoding(true).GetBytes(",Small:" + small + "b");
                                         fs.Write(info, 0, info.Length);
 
                                     }
 
-                                    info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b,");
+                                    if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true) info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b,Marker:" + marker + "b");
+                                    else info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b");
                                     fs.Write(info, 0, info.Length);
-
 
                                     if (paramSize != 5)
                                     {
@@ -340,42 +341,42 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     else
                                     {
 
-                                        info = new UTF8Encoding(true).GetBytes("BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
+                                        if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true) info = new UTF8Encoding(true).GetBytes(",Passengers:[{id:\"minecraft:falling_block\",Invulnerable:1b,Time:-2147483648,NoGravity:" + noGravity + ",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
+                                        else info = new UTF8Encoding(true).GetBytes(",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
                                         fs.Write(info, 0, info.Length);
+
                                         info = new UTF8Encoding(true).GetBytes("");
-                                        for (int j = 4; j < multiplier; j++)
+                                        fs.Write(info, 0, info.Length);
+                                        for (int j = 4; j < multiplier; j++) 
                                         {
-                                            MessageBox.Show(block[i + j].ToString());
                                             if (block[i + j].ToString() != "null")
                                             {
-                                                switch (i + j)
+                                                switch (j)
                                                 {
                                                     case 4:
                                                         info = new UTF8Encoding(true).GetBytes("facing:" + block[i + j].ToString() + ",");
-                                                        fs.Write(info, 0, info.Length);
                                                         break;
                                                     case 5:
                                                         info = new UTF8Encoding(true).GetBytes("type:" + block[i + j].ToString() + ",");
-                                                        fs.Write(info, 0, info.Length);
                                                         break;
                                                     case 6:
                                                         info = new UTF8Encoding(true).GetBytes("rotation:" + block[i + j].ToString() + ",");
-                                                        fs.Write(info, 0, info.Length);
                                                         break;
                                                     case 7:
                                                         info = new UTF8Encoding(true).GetBytes("snowy:" + block[i + j].ToString() + ",");
-                                                        fs.Write(info, 0, info.Length);
                                                         break;
                                                     case 8:
                                                         info = new UTF8Encoding(true).GetBytes("half:" + block[i + j].ToString() + ",");
-                                                        fs.Write(info, 0, info.Length);
                                                         break;
 
                                                 }
+                                                fs.Write(info, 0, info.Length);
 
                                             }
                                         }
-                                        info = new UTF8Encoding(true).GetBytes("}}}\n");
+
+                                        if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true)  info = new UTF8Encoding(true).GetBytes("}}}]}\n");
+                                        else info = new UTF8Encoding(true).GetBytes("}}}\n");
                                         fs.Write(info, 0, info.Length);
                                     }
 

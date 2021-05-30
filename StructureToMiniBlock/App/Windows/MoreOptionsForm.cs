@@ -14,6 +14,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         public static bool team = false;
         public static bool coolPlants = false;
         public static bool toSnowBlock = true;
+        public static bool fOnArmorStand = false;
         public static string teamList = "";
         CreateForm createForm = new CreateForm();
 
@@ -79,14 +80,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 checkBox1.Checked = true;
             }
 
-            if (toSnowBlock == false)
-            {
-                checkBox3.Checked = false;
-            }
-            else
-            {
-                checkBox3.Checked = true;
-            }
+            if (toSnowBlock == false) checkBox3.Checked = false;
+            else checkBox3.Checked = true;
+
+            if (fOnArmorStand == false) checkBox4.Checked = false;
+            else checkBox4.Checked = true;
         }
 
         private void MoreOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -108,6 +106,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox3_Click(object sender, EventArgs e)
         {
             toSnowBlock = !toSnowBlock;
+        }
+
+        private void checkBox4_Click(object sender, EventArgs e)
+        {
+            fOnArmorStand = !fOnArmorStand;
         }
     }
 }
