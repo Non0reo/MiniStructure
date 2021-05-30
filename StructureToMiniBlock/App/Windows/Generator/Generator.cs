@@ -87,7 +87,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                     using (FileStream fs = File.Create(path))
                     {
 
-                        byte[] info2 = new UTF8Encoding(true).GetBytes("###################################################################################\n##																				 ##\n##     Made with the MiniStrucure generator - by NoNOréo                         ##\n##																				 ##\n###################################################################################\n\n");
+                        byte[] info2 = new UTF8Encoding(true).GetBytes("###################################################################################\n##																				 ##\n##     Made with the MiniStructure generator - by NoNOréo                         ##\n##																				 ##\n###################################################################################\n\n");
                         fs.Write(info2, 0, info2.Length);
 
                         for (int i = 0; i < (count * multiplier); i = i + multiplier)
