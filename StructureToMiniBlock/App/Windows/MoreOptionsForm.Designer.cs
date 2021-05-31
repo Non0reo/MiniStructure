@@ -37,14 +37,17 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.Location = new System.Drawing.Point(267, 459);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 43);
+            this.button2.Size = new System.Drawing.Size(97, 44);
             this.button2.TabIndex = 1;
             this.button2.Text = "OK";
             this.button2.UseVisualStyleBackColor = true;
@@ -55,6 +58,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(189, 14);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(18, 17);
             this.checkBox2.TabIndex = 12;
@@ -75,6 +79,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(189, 38);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(175, 27);
             this.textBox1.TabIndex = 13;
@@ -84,6 +89,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(189, 82);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(114, 24);
             this.checkBox1.TabIndex = 14;
@@ -94,6 +100,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             // checkBox3
             // 
             this.checkBox3.Location = new System.Drawing.Point(189, 112);
+            this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(175, 60);
             this.checkBox3.TabIndex = 15;
@@ -104,6 +111,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             // checkBox4
             // 
             this.checkBox4.Location = new System.Drawing.Point(189, 178);
+            this.checkBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(175, 60);
             this.checkBox4.TabIndex = 16;
@@ -111,12 +119,34 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.Click += new System.EventHandler(this.checkBox4_Click);
             // 
+            // checkBox5
+            // 
+            this.checkBox5.Location = new System.Drawing.Point(189, 244);
+            this.checkBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(175, 60);
+            this.checkBox5.TabIndex = 17;
+            this.checkBox5.Text = "Tag for the falling block (one per line)";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            this.checkBox5.Click += new System.EventHandler(this.checkBox5_Click);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.Location = new System.Drawing.Point(181, 311);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(183, 115);
+            this.richTextBox1.TabIndex = 18;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
             // MoreOptionsForm
             // 
-            this.AcceptButton = this.button2;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 514);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.checkBox1);
@@ -146,5 +176,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

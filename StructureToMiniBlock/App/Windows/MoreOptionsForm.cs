@@ -15,7 +15,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
         public static bool coolPlants = false;
         public static bool toSnowBlock = true;
         public static bool fOnArmorStand = false;
+        public static bool tag2 = false;
         public static string teamList = "";
+        public static string[] tagsList2;
         CreateForm createForm = new CreateForm();
 
         public MoreOptionsForm()
@@ -71,20 +73,33 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
             textBox1.Text = teamList;
 
-            if (coolPlants == false)
-            {
-                checkBox1.Checked = false;
-            }
-            else
-            {
-                checkBox1.Checked = true;
-            }
+            if (coolPlants == false) checkBox1.Checked = false;
+            else checkBox1.Checked = true;
 
             if (toSnowBlock == false) checkBox3.Checked = false;
             else checkBox3.Checked = true;
 
             if (fOnArmorStand == false) checkBox4.Checked = false;
             else checkBox4.Checked = true;
+
+            if (tag2 == false) checkBox5.Checked = false;
+            else checkBox5.Checked = true;
+
+            if (tag2 == false)
+            {
+                team = false;
+                checkBox5.Checked = false;
+                richTextBox1.ReadOnly = true;
+                richTextBox1.Enabled = false;
+            }
+            else
+            {
+                team = true;
+                checkBox5.Checked = true;
+                richTextBox1.ReadOnly = false;
+                richTextBox1.Enabled = true;
+            }
+            //richTextBox1.Text = tagsList2.ToString();
         }
 
         private void MoreOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -111,6 +126,30 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox4_Click(object sender, EventArgs e)
         {
             fOnArmorStand = !fOnArmorStand;
+        }
+
+        private void checkBox5_Click(object sender, EventArgs e)
+        {
+            if (tag2 == false)
+            {
+                richTextBox1.ReadOnly = false;
+                richTextBox1.HideSelection = false;
+                richTextBox1.Enabled = true;
+                richTextBox1.BackColor = System.Drawing.Color.White;
+                richTextBox1.ForeColor = System.Drawing.Color.Black;
+            }
+            else
+            {
+                richTextBox1.ReadOnly = true;
+                richTextBox1.Enabled = false;
+                richTextBox1.ForeColor = System.Drawing.Color.Transparent;
+            }
+            tag2 = !tag2;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
