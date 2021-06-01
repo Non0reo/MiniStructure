@@ -64,6 +64,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 listblock.Add("null");
             }
 
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("axis") == true)
+            {
+                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("axis").StringValue);
+            }
+            else
+            {
+                listblock.Add("null");
+            }
+
             return listblock;  
         } 
 

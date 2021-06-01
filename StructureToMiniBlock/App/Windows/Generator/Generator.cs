@@ -395,6 +395,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                     case 8:
                                                         info = new UTF8Encoding(true).GetBytes("half:" + block[i + j].ToString() + ",");
                                                         break;
+                                                    case 9:
+                                                        info = new UTF8Encoding(true).GetBytes("axis:" + block[i + j].ToString() + ",");
+                                                        break;
 
                                                 }
                                                 fs.Write(info, 0, info.Length);
