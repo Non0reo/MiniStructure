@@ -149,11 +149,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
             if (fOnArmorStand == false)
             {
                 checkBox5.Enabled = false;
-                richTextBox1.Enabled = false;
+                if (tag2 == true) richTextBox1.Enabled = false;
             } else
             {
                 checkBox5.Enabled = true;
-                richTextBox1.Enabled = true;
+                if (tag2 == true) richTextBox1.Enabled = true;
             }
         }
 
