@@ -12,6 +12,7 @@ namespace StructureToMiniBlock.App.Windows
         public static bool marker = true;
         public static bool tag = false;
         public static string[] tagsList;
+        public static string size = "";
         public CreateForm _form;
 
         public CreateForm()
@@ -34,6 +35,7 @@ namespace StructureToMiniBlock.App.Windows
         {
             var structFunction = new Generator.Generator();
             structFunction.generateSize(comboBox1.Text);
+            size = comboBox1.Text;
             /*switch (comboBox1.Text)
             {
                 case "Big (0.625 block)":

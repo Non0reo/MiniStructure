@@ -79,27 +79,46 @@ namespace StructureToMiniBlock.App.Windows.Generator
             if (toSnowBlock == false) checkBox3.Checked = false;
             else checkBox3.Checked = true;
 
-            if (fOnArmorStand == false) checkBox4.Checked = false;
-            else checkBox4.Checked = true;
-
-            if (tag2 == false) checkBox5.Checked = false;
-            else checkBox5.Checked = true;
-
-            if (tag2 == false)
+            if (fOnArmorStand == false)
             {
-                team = false;
-                checkBox5.Checked = false;
-                richTextBox1.ReadOnly = true;
+                checkBox5.Enabled = false;
                 richTextBox1.Enabled = false;
             }
             else
             {
-                team = true;
-                checkBox5.Checked = true;
-                richTextBox1.ReadOnly = false;
+                checkBox5.Enabled = true;
                 richTextBox1.Enabled = true;
             }
-            //richTextBox1.Text = tagsList2.ToString();
+
+            if (CreateForm.size == "Equal (1 block)")
+            {
+                if (fOnArmorStand == false) checkBox4.Checked = false;
+                else checkBox4.Checked = true;
+
+                if (tag2 == false)
+                {
+                    tag2 = false;
+                    checkBox5.Checked = false;
+                    richTextBox1.ReadOnly = true;
+                    richTextBox1.Enabled = false;
+                }
+                else
+                {
+                    tag2 = true;
+                    checkBox5.Checked = true;
+                    richTextBox1.ReadOnly = false;
+                    richTextBox1.Enabled = true;
+                }
+            } else
+            {
+                //tag2 = false;
+                //fOnArmorStand = false;
+                checkBox4.Enabled = false;
+                checkBox5.Enabled = false;
+                richTextBox1.Enabled = false;
+            }
+            richTextBox1.Lines = tagsList2;
+
         }
 
         private void MoreOptionsForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -111,6 +130,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         public void setEverythingOK()
         {
             teamList = textBox1.Text;
+            tagsList2 = richTextBox1.Lines;
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
@@ -126,6 +146,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox4_Click(object sender, EventArgs e)
         {
             fOnArmorStand = !fOnArmorStand;
+            if (fOnArmorStand == false)
+            {
+                checkBox5.Enabled = false;
+                richTextBox1.Enabled = false;
+            } else
+            {
+                checkBox5.Enabled = true;
+                richTextBox1.Enabled = true;
+            }
         }
 
         private void checkBox5_Click(object sender, EventArgs e)
@@ -135,14 +164,14 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 richTextBox1.ReadOnly = false;
                 richTextBox1.HideSelection = false;
                 richTextBox1.Enabled = true;
-                richTextBox1.BackColor = System.Drawing.Color.White;
-                richTextBox1.ForeColor = System.Drawing.Color.Black;
+                //richTextBox1.BackColor = System.Drawing.Color.White;
+                //richTextBox1.ForeColor = System.Drawing.Color.Black;
             }
             else
             {
                 richTextBox1.ReadOnly = true;
                 richTextBox1.Enabled = false;
-                richTextBox1.ForeColor = System.Drawing.Color.Transparent;
+                //richTextBox1.ForeColor = System.Drawing.Color.Transparent;
             }
             tag2 = !tag2;
         }
