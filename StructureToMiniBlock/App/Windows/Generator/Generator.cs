@@ -341,8 +341,35 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     else
                                     {
 
-                                        if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true) info = new UTF8Encoding(true).GetBytes(",Passengers:[{id:\"minecraft:falling_block\",Invulnerable:1b,Time:-2147483648,NoGravity:" + noGravity + ",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
-                                        else info = new UTF8Encoding(true).GetBytes(",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
+                                        if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true)
+                                        {
+                                            info = new UTF8Encoding(true).GetBytes(",Passengers:[{id:\"minecraft:falling_block\",Invulnerable:1b");
+                                            fs.Write(info, 0, info.Length);
+                                            if (MoreOptionsForm.tag2 == true)
+                                            {
+                                                info = new UTF8Encoding(true).GetBytes(",Tags:[\"");
+                                                fs.Write(info, 0, info.Length);
+
+                                                for (int j = 0; j < MoreOptionsForm.tagsList2.Length; j++)
+                                                {
+                                                    if (MoreOptionsForm.tagsList2[j] != "")
+                                                    {
+                                                        presentTags = MoreOptionsForm.tagsList2[j];
+                                                        info = new UTF8Encoding(true).GetBytes(presentTags.ToString().Replace(" ", "_"));
+                                                        fs.Write(info, 0, info.Length);
+                                                        if (j != MoreOptionsForm.tagsList2.Length - 1)
+                                                        {
+                                                            info = new UTF8Encoding(true).GetBytes("\",\"");
+                                                            fs.Write(info, 0, info.Length);
+                                                        }
+                                                    }
+                                                }
+                                                info = new UTF8Encoding(true).GetBytes("\"]");
+                                                fs.Write(info, 0, info.Length);
+                                            }
+                                            info = new UTF8Encoding(true).GetBytes(",Time:-2147483648,NoGravity:" + noGravity + ",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
+                                        }
+                                        else if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == false) info = new UTF8Encoding(true).GetBytes(",BlockState:{Name:\"" + data.Remove(0, 10) + "\",Properties:{");
                                         fs.Write(info, 0, info.Length);
 
                                         info = new UTF8Encoding(true).GetBytes("");
