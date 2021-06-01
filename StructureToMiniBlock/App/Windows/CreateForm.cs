@@ -36,6 +36,11 @@ namespace StructureToMiniBlock.App.Windows
             var structFunction = new Generator.Generator();
             structFunction.generateSize(comboBox1.Text);
             size = comboBox1.Text;
+            button1.Enabled = true;
+
+            /*if (comboBox1.SelectedIndex.ToString() != "") button1.Enabled = true;
+            else button1.Enabled = false;*/
+
             /*switch (comboBox1.Text)
             {
                 case "Big (0.625 block)":
@@ -98,6 +103,7 @@ namespace StructureToMiniBlock.App.Windows
 
         private void CreateForm_Load(object sender, EventArgs e)
         {
+            button1.Enabled = false;
             label3.Text = "";
             generator.noGrav(1);
             generator.mark(1);
