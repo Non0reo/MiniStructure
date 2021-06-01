@@ -29,6 +29,7 @@ namespace StructureToMiniBlock.App.Windows
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateForm));
             this.label1 = new System.Windows.Forms.Label();
             this.paramNoGravity = new System.Windows.Forms.CheckBox();
@@ -41,6 +42,7 @@ namespace StructureToMiniBlock.App.Windows
             this.label4 = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -95,6 +97,7 @@ namespace StructureToMiniBlock.App.Windows
             this.button1.Size = new System.Drawing.Size(167, 59);
             this.button1.TabIndex = 3;
             this.button1.Text = "Create";
+            this.toolTip1.SetToolTip(this.button1, "I\'m ready!");
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -220,5 +223,6 @@ namespace StructureToMiniBlock.App.Windows
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

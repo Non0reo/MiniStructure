@@ -29,6 +29,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MoreOptionsForm));
             this.button2 = new System.Windows.Forms.Button();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
@@ -39,6 +40,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // button2
@@ -94,6 +96,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox1.Size = new System.Drawing.Size(114, 24);
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "Better Plants";
+            this.toolTip1.SetToolTip(this.checkBox1, "Make plants and chains have a Paper block 3D render");
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
@@ -116,6 +119,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox4.Size = new System.Drawing.Size(175, 60);
             this.checkBox4.TabIndex = 16;
             this.checkBox4.Text = "Falling block on armor stand";
+            this.toolTip1.SetToolTip(this.checkBox4, "If you want to move your structure property, it\'s recomended to put the falling b" +
+        "lock on armor stands and __move the armor stands__");
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.Click += new System.EventHandler(this.checkBox4_Click);
             // 
@@ -127,6 +132,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox5.Size = new System.Drawing.Size(175, 60);
             this.checkBox5.TabIndex = 17;
             this.checkBox5.Text = "Tag for the falling block (one per line)";
+            this.toolTip1.SetToolTip(this.checkBox5, "Add tags for the falling blocks which are on armor stand");
             this.checkBox5.UseVisualStyleBackColor = true;
             this.checkBox5.Click += new System.EventHandler(this.checkBox5_Click);
             // 
@@ -139,6 +145,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // MoreOptionsForm
             // 
@@ -178,5 +189,6 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
