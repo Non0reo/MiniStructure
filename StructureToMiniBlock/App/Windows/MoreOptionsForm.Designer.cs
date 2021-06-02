@@ -98,6 +98,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox1.Text = "Better Plants";
             this.toolTip1.SetToolTip(this.checkBox1, "Make plants and chains have a Paper block 3D render");
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             this.checkBox1.Click += new System.EventHandler(this.checkBox1_Click);
             // 
             // checkBox3
@@ -145,11 +146,6 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.IsBalloon = true;
-            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
             // MoreOptionsForm
             // 

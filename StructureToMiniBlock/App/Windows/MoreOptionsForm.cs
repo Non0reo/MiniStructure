@@ -58,6 +58,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
         private void MoreOptionsForm_Load(object sender, EventArgs e)
         {
+            toolTip1.SetToolTip(checkBox4, "If you want to move your structure property, it's recomended to put\nthe falling block on armor stands and move the armor stands");
+
             if (team == false)
             {
                 team = false;
@@ -95,6 +97,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 if (fOnArmorStand == false) checkBox4.Checked = false;
                 else checkBox4.Checked = true;
 
+                checkBox1.Enabled = false;
+                checkBox3.Enabled = false;
+
                 if (tag2 == false)
                 {
                     tag2 = false;
@@ -111,6 +116,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                 }
             } else
             {
+                checkBox1.Enabled = true;
+                checkBox3.Enabled = true;
                 //tag2 = false;
                 //fOnArmorStand = false;
                 checkBox4.Enabled = false;
@@ -177,6 +184,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
