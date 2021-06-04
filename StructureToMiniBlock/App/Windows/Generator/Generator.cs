@@ -319,12 +319,12 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     {
                                         if (onArm == 0)
                                         {
-                                            info = new UTF8Encoding(true).GetBytes("ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959}\n");
+                                            info = new UTF8Encoding(true).GetBytes(",ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959}\n");
                                             fs.Write(info, 0, info.Length);
                                         }
                                         else
                                         {
-                                            info = new UTF8Encoding(true).GetBytes("HandItems:[{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b},{}],DisabledSlots:4144959,");
+                                            info = new UTF8Encoding(true).GetBytes(",HandItems:[{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b},{}],DisabledSlots:4144959,");
                                             fs.Write(info, 0, info.Length);
                                             if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
                                             {
