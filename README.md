@@ -29,5 +29,5 @@ All block that have no render in hand like water, cocoa, piston head, corner sta
 
 # Project Things
 It's my first C# Project, and It's also my First Coding Project at all :3
-So, the code can be a little bit nasty at some point, I know. I discover C# at the same time I was making this project. So If you see some strange methods or useless variable, It's alright, It's ignorance
+So, the code can be a little bit nasty at some point, I know. I discover C# at the same time I was making this project. So If you see some strange methods or useless variable, It's alright, It's ignorance...
 
