@@ -52,7 +52,7 @@ namespace StructureToMiniBlock
 					}
 					var strip = new Controls.MainMenuStrip();
 					strip.openFile(false);
-					this.AllowDrop = false;
+					this.AllowDrop = true;
 				}
 				tempo = 1;
 			} else {
