@@ -171,6 +171,7 @@ namespace StructureToMiniBlock.App.Windows
             // linkLabel1
             // 
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.RosyBrown;
+            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.Black;
             this.linkLabel1.Location = new System.Drawing.Point(548, 196);

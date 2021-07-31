@@ -2,12 +2,17 @@
 using System.Windows.Forms;
 using StructureToMiniBlock.Controls;
 using System.Collections;
+using StructureToMiniBlock.App.Windows.Generator;
 
 namespace StructureToMiniBlock.App.Windows
 {
     public partial class CreateForm : Form
     {
         Generator.Generator generator = new Generator.Generator();
+        AllowedChar allowedChars = new AllowedChar();
+        //MoreOptionsForm moreOptionsForm = new MoreOptionsForm();
+        public static bool charTestPassed = true;
+        public static bool needGen = true;
         public static bool noGrav = true;
         public static bool marker = true;
         public static bool tag = false;
@@ -68,20 +73,64 @@ namespace StructureToMiniBlock.App.Windows
 
         private void button1_Click(object sender, EventArgs e)
         {
+            charTestPassed = true;
             tagsList = richTextBox1.Lines;
-            var structFunction = new Struture.Structure();
-            structFunction.getBlock();
-            structFunction.reset();
-            this.Close();
-            MessageBox.Show("Your file have been created!");
+
+            foreach (char c in String.Concat(tagsList))
+            {
+                if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
+                else
+                {
+                    MessageBox.Show("Invalid Char - Please put a correct tag for your structure\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
+                    charTestPassed = false;
+                    break;
+                }
+            }
+            
+            foreach (char c in String.Concat(MoreOptionsForm.tagsList2))
+            {
+                if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
+                else
+                {
+                    MessageBox.Show("Invalid Char - Please put a correct tag for the falling blocks\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
+                    charTestPassed = false;
+                    break;
+                }
+            }
+            
+            foreach (char c in String.Concat(MoreOptionsForm.teamList))
+            {
+                if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
+                else
+                {
+                    MessageBox.Show("Invalid Char - Please put a correct team name for your structure\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
+                    charTestPassed = false;
+                    break;
+                }
+            }
+
+            if (charTestPassed == true)
+            {
+                var structFunction = new Struture.Structure();
+                structFunction.getBlock();    //Start File Generation
+                if (needGen == true)
+                {
+                    structFunction.reset();
+                    this.Close();
+                }
+            }
+
+
+
         }
 
         private void paramNoGravity_CheckedChanged(object sender, EventArgs e)
         {
-            if(noGrav == true)
+            if (noGrav == true)
             {
                 generator.noGrav(0);
-            } else
+            }
+            else
             {
                 generator.noGrav(1);
             }
@@ -183,5 +232,7 @@ namespace StructureToMiniBlock.App.Windows
         {
 
         }
+
     }
+    
 }

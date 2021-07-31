@@ -77,8 +77,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
             saveFileDialog = new SaveFileDialog();
             saveFileDialog.Title = "Place your file somewhere";
             saveFileDialog.Filter = "mcfunction|*.mcfunction";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK/* && !(saveFileDialog.ShowDialog() == DialogResult.Cancel)*/)
             {
+                CreateForm.needGen = true;
                 string path = saveFileDialog.FileName;
                 var nbt = new ArrayList();
 
@@ -312,7 +313,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     }
 
                                     if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true) info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b,Marker:" + marker + "b");
-                                    else info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b");
+                                    else info = new UTF8Encoding(true).GetBytes(",NoGravity:" + noGravity + "b,Marker:" + marker + "b");
                                     fs.Write(info, 0, info.Length);
 
                                     if (paramSize != 5)
@@ -516,13 +517,15 @@ namespace StructureToMiniBlock.App.Windows.Generator
                         }
                     }
 
+                    MessageBox.Show("Your file have been created!");
                 }
 
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }
+            } 
+            else CreateForm.needGen = false;
 
             var allowDrop = new MainForm();
             allowDrop.AllowDrop = true;
