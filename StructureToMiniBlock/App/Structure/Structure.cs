@@ -10,7 +10,7 @@ namespace StructureToMiniBlock.App.Struture
     {
         public static int[] size = new int[3];
         public static int count;
-        public string [] data = new string[10];
+        public string [] data = new string[11];
         public List<List<string>> palette = new List<List<string>>();
         //public List<string> palette = new List<string>();
         //public List<string> blockAndNbt = new List<string>();
@@ -49,13 +49,13 @@ namespace StructureToMiniBlock.App.Struture
             for (int i = 0; i < block.Count; i++)
             {
                 if (block.Get<NbtCompound>(i).Contains("Properties") == true)
-                {
+                { 
                     BlockStateConstraint bSC = new BlockStateConstraint();
                     palette.Add(bSC.BlockStates(file, i));
                 }
                 else
                 {
-                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null", "null", "null", "null", "null", "null" });
+                    palette.Add(new List<string> { block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue, "null", "null", "null", "null", "null", "null", "null" });
                 }
             }
         }
@@ -94,6 +94,7 @@ namespace StructureToMiniBlock.App.Struture
                                 data[7] = palette[state][4];
                                 data[8] = palette[state][5];
                                 data[9] = palette[state][6];
+                                data[10] = palette[state][7];
 
                                 block.AddRange(data);
                             } 

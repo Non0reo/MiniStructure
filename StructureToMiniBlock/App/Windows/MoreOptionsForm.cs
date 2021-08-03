@@ -11,11 +11,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
 {
     public partial class MoreOptionsForm : Form
     {
-        public static bool team = false;
-        public static bool coolPlants = false;
-        public static bool toSnowBlock = true;
-        public static bool fOnArmorStand = false;
-        public static bool tag2 = false;
+        public static bool team = false, coolPlants = false, fOnArmorStand = false, tag2 = false;
+        public static bool toSnowBlock = true, snowLayer = true;
+
         public static string teamList = "";
         public static string[] tagsList2;
         CreateForm createForm = new CreateForm();
@@ -59,6 +57,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void MoreOptionsForm_Load(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(checkBox4, "If you want to move your structure property, it's recomended to put\nthe falling block on armor stands and move the armor stands");
+            toolTip1.SetToolTip(checkBox6, "Will summor a armor stand for each snow layer from 1 to 7 layers\n(8 layers blocks are automaticly transformed with a snow block)");
+
 
             if (team == false)
             {
@@ -77,6 +77,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
             if (coolPlants == false) checkBox1.Checked = false;
             else checkBox1.Checked = true;
+
+            if (snowLayer == false) checkBox6.Checked = false;
+            else checkBox6.Checked = true;
 
             if (toSnowBlock == false) checkBox3.Checked = false;
             else checkBox3.Checked = true;
@@ -148,6 +151,11 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox3_Click(object sender, EventArgs e)
         {
             toSnowBlock = !toSnowBlock;
+        }
+
+        private void checkBox6_Click(object sender, EventArgs e)
+        {
+            snowLayer = !snowLayer;
         }
 
         private void checkBox4_Click(object sender, EventArgs e)

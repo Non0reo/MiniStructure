@@ -41,6 +41,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // button2
@@ -147,11 +148,25 @@ namespace StructureToMiniBlock.App.Windows.Generator
             this.richTextBox1.Text = "";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
+            // checkBox6
+            // 
+            this.checkBox6.Location = new System.Drawing.Point(8, 11);
+            this.checkBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(175, 72);
+            this.checkBox6.TabIndex = 19;
+            this.checkBox6.Text = "Summon an armor stand for each snow layer";
+            this.toolTip1.SetToolTip(this.checkBox6, "Will summor a armor stand for each\\n snow layer from 1 to 7 layers (8  layers are" +
+        " automaticly transformed with a snow block)");
+            this.checkBox6.UseVisualStyleBackColor = true;
+            this.checkBox6.Click += new System.EventHandler(this.checkBox6_Click);
+            // 
             // MoreOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 514);
+            this.Controls.Add(this.checkBox6);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.checkBox5);
             this.Controls.Add(this.checkBox4);
@@ -186,5 +201,6 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private System.Windows.Forms.CheckBox checkBox5;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.CheckBox checkBox6;
     }
 }

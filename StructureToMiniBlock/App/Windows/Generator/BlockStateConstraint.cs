@@ -19,59 +19,35 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
             listblock.Add(block.Get<NbtCompound>(i).Get<NbtString>("Name").StringValue);
 
+            /*
+            facing
+            type
+            rotation
+            snowy
+            half
+            axis
+            */
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue);
-            } else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue);
+            else listblock.Add("null");
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("type") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("type").StringValue);
-            }
-            else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("type") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("type").StringValue);
+            else listblock.Add("null");
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("rotation") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("rotation").StringValue);
-            }
-            else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("rotation") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("rotation").StringValue);
+            else listblock.Add("null");
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("snowy") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("snowy").StringValue);
-            }
-            else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("snowy") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("snowy").StringValue);
+            else listblock.Add("null");
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("half") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("half").StringValue);
-            }
-            else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("half") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("half").StringValue);
+            else listblock.Add("null");
 
-            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("axis") == true)
-            {
-                listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("axis").StringValue);
-            }
-            else
-            {
-                listblock.Add("null");
-            }
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("axis") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("axis").StringValue);
+            else listblock.Add("null");
+
+            if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("layers") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("layers").StringValue);
+            else listblock.Add("null");
 
             return listblock;  
         } 

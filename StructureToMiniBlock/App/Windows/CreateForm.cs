@@ -86,27 +86,40 @@ namespace StructureToMiniBlock.App.Windows
                     break;
                 }
             }
-            
-            foreach (char c in String.Concat(MoreOptionsForm.tagsList2))
+            try
             {
-                if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
-                else
+                foreach (char c in String.Concat(MoreOptionsForm.tagsList2))
                 {
-                    MessageBox.Show("Invalid Char - Please put a correct tag for the falling blocks\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
-                    charTestPassed = false;
-                    break;
+                    if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
+                    else
+                    {
+                        MessageBox.Show("Invalid Char - Please put a correct tag for the falling blocks\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
+                        charTestPassed = false;
+                        break;
+                    }
                 }
             }
-            
-            foreach (char c in String.Concat(MoreOptionsForm.teamList))
+            catch
             {
-                if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
-                else
+
+            }
+
+
+            try
+            {
+                foreach (char c in String.Concat(MoreOptionsForm.teamList))
                 {
-                    MessageBox.Show("Invalid Char - Please put a correct team name for your structure\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
-                    charTestPassed = false;
-                    break;
+                    if (string.Concat(allowedChars.tagsNTeam).Contains(c.ToString()) || string.Concat(allowedChars.FileName).Contains(c.ToString())) charTestPassed = true;
+                    else
+                    {
+                        MessageBox.Show("Invalid Char - Please put a correct team name for your structure\n • Accepted Characters: - | + | . | _ | A-Z | a-z | 0-9");
+                        charTestPassed = false;
+                        break;
+                    }
                 }
+            } catch
+            {
+
             }
 
             if (charTestPassed == true)
