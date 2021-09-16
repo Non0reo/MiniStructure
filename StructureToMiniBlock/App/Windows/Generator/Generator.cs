@@ -144,7 +144,10 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         MessageBox.Show(block[i + 10].ToString());
                                         if (MoreOptionsForm.snowLayer == true && block[i + 10].ToString() == "8")
                                         {
-                                            block[i + 10].ToString().Replace("snow", "snow_block");
+                                            MessageBox.Show("Changed snow to snow_block - " + block[i + 3].ToString());
+                                            block[i + 3] = block[i + 3].ToString().Replace("snow", "snow_block");
+                                            MessageBox.Show(block[i + 3].ToString());
+
                                         }
 
                                         //Rotation:
@@ -398,7 +401,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
                                         info = new UTF8Encoding(true).GetBytes("");
                                         fs.Write(info, 0, info.Length);
-                                        for (int j = 4; j < multiplier; j++)  
+                                        for (int j = 4; j < multiplier; j++)
                                         {
                                             if (block[i + j].ToString() != "null")
                                             {
@@ -432,18 +435,22 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             }
                                         }
 
-                                        if (paramSize == 5 && MoreOptionsForm.fOnArmorStand == true)  info = new UTF8Encoding(true).GetBytes("}}}]}\n");
-                                        else info = new UTF8Encoding(true).GetBytes("}}}\n");
-                                        fs.Write(info, 0, info.Length);
+                                    }
 
-                                        MessageBox.Show(MoreOptionsForm.snowLayer.ToString());
-                                        if(MoreOptionsForm.snowLayer == true && int.Parse((string)block[i + 10]) > 1)
+                                    if (paramSize == 5) info = new UTF8Encoding(true).GetBytes("}}}]}\n");
+                                    if (paramSize == 5) fs.Write(info, 0, info.Length);
+                                    //else info = new UTF8Encoding(true).GetBytes("}}}\n");
+                                    //fs.Write(info, 0, info.Length);
+
+                                    //Snow Layers
+                                    if (MoreOptionsForm.snowLayer == true &&
+                                        block[i + 10] != "null" &&
+                                        int.Parse((string)block[i + 10]) > 1 &&
+                                        int.Parse((string)block[i + 10]) < 8)
+                                    {
+                                        for (int j = 1; j < int.Parse((string)block[i + 10]); j++)
                                         {
-                                            MessageBox.Show("Plus de 1 = oui");
-                                            for (int j = 0; j < int.Parse((string)block[i + 10]); j++)
-                                            {
-                                                addToFileBlock(fs, size, block, count, multiplier, i, x, y + blockSize * (j - 1), z);
-                                            }
+                                            addToFileBlock(fs, size, block, count, multiplier, i, x, y + (blockSize / 8) * j, z);
                                         }
                                     }
 
