@@ -40,9 +40,8 @@ namespace StructureToMiniBlock
 			string[] files = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 			if (tempo == 0)
 			{
-				if (/*_openFileDialog.ShowDialog() == DialogResult.OK &&*/ StructureToMiniBlock.Controls.MainMenuStrip.canOpenFile == true)
+				if (StructureToMiniBlock.Controls.MainMenuStrip.canOpenFile == true)
 				{
-
 
 					if (files.Length > 1)
 					{

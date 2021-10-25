@@ -23,6 +23,9 @@ namespace StructureToMiniBlock.App.Windows.Generator
         const string pose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[345f,45f,0f]}";
         //~ ~0.08 ~0.192
         //~ ~0.1142 ~0.26976
+        const string invertPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[345f,225f,180f]}";
+        //~ ~-1.06185 ~0.523
+        const string headPose = ",Pose:{Head:[360f,0f,180f]}";
         const string horizontalPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[-90f,0f,0f]}";
         //~-0.29 ~-0.38 ~-0.3
         //~-0.145 ~-0.19 ~-0.15
@@ -141,7 +144,6 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         }
 
                                         //Snow layers:
-                                        MessageBox.Show(block[i + 10].ToString());
                                         if (MoreOptionsForm.snowLayer == true && block[i + 10].ToString() == "8")
                                         {
                                             MessageBox.Show("Changed snow to snow_block - " + block[i + 3].ToString());
@@ -195,10 +197,12 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             z = constraint.MoveMiniBlockDueToRotationZ(z, block, i);
                                         }
 
+
                                         //~ ~0.08 ~0.192
                                         //~ ~0.1142 ~0.26976
                                         //~-0.29 ~-0.38 ~-0.3
                                         //~-0.145 ~-0.19 ~-0.15
+
 
                                         if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
                                         {
@@ -260,6 +264,26 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             z = constraint.MoveMiniBlockDueToFacingZ(z, block, i);
                                         }
 
+                                        //~ ~-1.06185 ~0.523
+                                        //Stairs
+                                        if (block[i + 3].ToString().Contains("stairs") == true)
+                                        {
+                                            if (block[i + 8].ToString() == "top" && paramSize == 1) y += 0.5;
+                                            if (block[i + 8].ToString() == "top" && paramSize == 2) y += 0.35;
+                                            if (block[i + 8].ToString() == "top" && paramSize == 3)
+                                            {
+                                                y += -1.06185;
+                                                x = constraint.MoveSmallBlockDueToStairsX(x, block, i);
+                                                z = constraint.MoveSmallBlockDueToStairsZ(z, block, i);
+                                            }
+                                            if (block[i + 8].ToString() == "top" && paramSize == 4)
+                                            {
+                                                y += -0.531;
+                                                x = constraint.MoveMiniBlockDueToStairsX(x, block, i);
+                                                z = constraint.MoveMiniBlockDueToStairsZ(z, block, i);
+                                            }
+                                        }
+
 
 
                                         if (MoreOptionsForm.toSnowBlock == true &&
@@ -268,6 +292,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         {
                                             block[i + 3] = "minecraft:snow_block";
                                         }
+
+
 
                                     }
 
@@ -338,21 +364,27 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                     {
                                         if (onArm == 0)
                                         {
-                                            info = new UTF8Encoding(true).GetBytes(",ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959}\n");
+                                            info = new UTF8Encoding(true).GetBytes(",ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959");
+                                            fs.Write(info, 0, info.Length);
+                                            if (block[i + 8].ToString().Contains("top") == true && block[i + 3].ToString().Contains("stairs") == true) info = new UTF8Encoding(true).GetBytes(headPose);
+                                            fs.Write(info, 0, info.Length);
+                                            info = new UTF8Encoding(true).GetBytes("}\n");
                                             fs.Write(info, 0, info.Length);
                                         }
                                         else
                                         {
                                             info = new UTF8Encoding(true).GetBytes(",HandItems:[{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b},{}],DisabledSlots:4144959,");
                                             fs.Write(info, 0, info.Length);
-                                            if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
+                                            if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == false))
                                             {
-                                                info = new UTF8Encoding(true).GetBytes(horizontalPose + "}\n");
+                                                if (block[i + 8].ToString().Contains("top") == true && block[i + 3].ToString().Contains("stairs") == true) info = new UTF8Encoding(true).GetBytes(invertPose + "}\n");
+                                                else info = new UTF8Encoding(true).GetBytes(pose + "}\n");
                                                 fs.Write(info, 0, info.Length);
+                                                
                                             }
                                             else
                                             {
-                                                info = new UTF8Encoding(true).GetBytes(pose + "}\n");
+                                                info = new UTF8Encoding(true).GetBytes(horizontalPose + "}\n");
                                                 fs.Write(info, 0, info.Length);
                                             }
                                         }

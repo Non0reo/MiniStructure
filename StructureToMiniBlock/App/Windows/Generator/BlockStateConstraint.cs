@@ -513,6 +513,130 @@ namespace StructureToMiniBlock.App.Windows.Generator
             }
         }
 
+        //~ ~-1.06185 ~0.523
+        //Stairs
+        public double MoveSmallBlockDueToStairsX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += 0.523;
+                    return x;
+                case "west":
+                    x += -0.523;
+                    return x;
+                case "north":
+                    //x += -0.523;
+                    return x;
+                case "south":
+                    //x += 0.523;
+                    return x;
+                default:
+                    return x;
+            }
+        }
+
+        public double MoveSmallBlockDueToStairsZ(double z, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    //z += -0.523;
+                    return z;
+                case "west":
+                    //z += 0.523;
+                    return z;
+                case "north":
+                    z += -0.523;
+                    return z;
+                case "south":
+                    z += 0.523;
+                    return z;
+                default:
+                    return z;
+            }
+        }
+
+        public double MoveMiniBlockDueToStairsX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += 0.2622;
+                    return x;
+                case "west":
+                    x += -0.2622;
+                    return x;
+                case "north":
+                    return x;
+                case "south":
+                    return x;
+                default:
+                    return x;
+            }
+        }
+
+        //0.2622
+        public double MoveMiniBlockDueToStairsZ(double z, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    return z;
+                case "west":
+                    return z;
+                case "north":
+                    z += -0.2622;
+                    return z;
+                case "south":
+                    z += 0.2622;
+                    return z;
+                default:
+                    return z;
+            }
+        }
+
+        /*
+        public double MoveMiniBlockDueToStairsX(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += -0.4635;
+                    return x;
+                case "west":
+                    x += -0.2;
+                    return x;
+                case "north":
+                    x += -0.663;
+                    return x;
+                case "south":
+                    return x;
+                default:
+                    return x;
+            }
+        }
+
+        public double MoveMiniBlockDueToStairsZ(double x, ArrayList block, int where)
+        {
+            switch (block[where + 4])
+            {
+                case "east":
+                    x += -0.4635;
+                    return x;
+                case "west":
+                    x += -0.2;
+                    return x;
+                case "north":
+                    x += -0.663;
+                    return x;
+                case "south":
+                    return x;
+                default:
+                    return x;
+            }
+        }
+        */
 
 
         public string RotateArmorStandHead(ArrayList block, int where)
