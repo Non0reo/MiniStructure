@@ -25,7 +25,10 @@ namespace StructureToMiniBlock.App.Windows.Generator
         //~ ~0.1142 ~0.26976
         const string invertPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[345f,225f,180f]}";
         //~ ~-1.06185 ~0.523
+        const string axisPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[165f,315f,90f]}";
+        //~-1.88159 ~-0.88159 ~0.52457 
         const string headPose = ",Pose:{Head:[360f,0f,180f]}";
+        const string axisHeadPose = ",Pose:{Head:[360f,0f,-90f]";
         const string horizontalPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[-90f,0f,0f]}";
         //~-0.29 ~-0.38 ~-0.3
         //~-0.145 ~-0.19 ~-0.15
@@ -284,6 +287,65 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             }
                                         }
 
+                                        //~-1.88159 ~-0.88159 ~0.52457
+                                        //Axis
+                                        if (block[i + 9].ToString() != "null")
+                                        {
+                                            if (block[i + 9].ToString() == "x")
+                                            {
+                                                switch (paramSize)
+                                                {
+                                                    case 1:
+                                                        x += 0.25;
+                                                        y += 0.25;
+                                                        break;
+                                                    case 2:
+                                                        y += 0.35;
+                                                        break;
+                                                    case 3:
+                                                        x += -0.88159;
+                                                        y += -0.88159;
+                                                        z += 0.52457;
+                                                        break;
+                                                    case 4:
+                                                        x += -0.88159 / 2;
+                                                        y += -0.88159 / 2;
+                                                        z += 0.52457 / 2;
+                                                        break;
+                                                }
+                                            }
+
+                                            if (block[i + 9].ToString() == "z")
+                                            {
+                                                block[i + 4] = "east";
+                                                switch (paramSize)
+                                                {
+                                                    case 1:
+                                                        y += 0.5;
+                                                        break;
+                                                    case 2:
+                                                        y += 0.35;
+                                                        break;
+                                                    case 3:
+                                                        x = constraint.MoveBlockDueToFacingX(x, block, i);
+                                                        z = constraint.MoveBlockDueToFacingZ(z, block, i);
+
+                                                        z += 0.88159;
+                                                        y += -0.88159;
+                                                        x += 0.52457;
+                                                        break;
+                                                    case 4:
+                                                        x = constraint.MoveMiniBlockDueToFacingX(x, block, i);
+                                                        z = constraint.MoveMiniBlockDueToFacingZ(z, block, i);
+
+                                                        z += 0.88159 / 2;
+                                                        y += -0.88159 / 2;
+                                                        x += 0.52457 / 2;
+                                                        break;
+                                                }
+                                            }
+                                        }
+
 
 
                                         if (MoreOptionsForm.toSnowBlock == true &&
@@ -367,6 +429,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             info = new UTF8Encoding(true).GetBytes(",ArmorItems:[{},{},{},{id:\"" + data.Replace("minecraft:", "") + "\",Count:1b}],DisabledSlots:4144959");
                                             fs.Write(info, 0, info.Length);
                                             if (block[i + 8].ToString().Contains("top") == true && block[i + 3].ToString().Contains("stairs") == true) info = new UTF8Encoding(true).GetBytes(headPose);
+                                            else if (block[i + 9].ToString().Contains("x") == true || block[i + 9].ToString().Contains("z") == true) info = new UTF8Encoding(true).GetBytes(axisHeadPose);
                                             fs.Write(info, 0, info.Length);
                                             info = new UTF8Encoding(true).GetBytes("}\n");
                                             fs.Write(info, 0, info.Length);
@@ -378,6 +441,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == false))
                                             {
                                                 if (block[i + 8].ToString().Contains("top") == true && block[i + 3].ToString().Contains("stairs") == true) info = new UTF8Encoding(true).GetBytes(invertPose + "}\n");
+                                                else if (block[i + 9].ToString().Contains("x") == true || block[i + 9].ToString().Contains("z") == true) info = new UTF8Encoding(true).GetBytes(axisPose + "}\n");
                                                 else info = new UTF8Encoding(true).GetBytes(pose + "}\n");
                                                 fs.Write(info, 0, info.Length);
                                                 

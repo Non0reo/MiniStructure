@@ -26,6 +26,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
             snowy
             half
             axis
+            layers
             */
 
             if (block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Contains("facing") == true) listblock.Add(block.Get<NbtCompound>(i).Get<NbtCompound>("Properties").Get<NbtString>("facing").StringValue);
