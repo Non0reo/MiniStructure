@@ -84,7 +84,6 @@ namespace StructureToMiniBlock.App.Windows
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(187, 28);
             this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
             // 
             // button1
@@ -134,7 +133,6 @@ namespace StructureToMiniBlock.App.Windows
             this.label3.Size = new System.Drawing.Size(27, 20);
             this.label3.TabIndex = 6;
             this.label3.Text = "---";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // richTextBox1
             // 

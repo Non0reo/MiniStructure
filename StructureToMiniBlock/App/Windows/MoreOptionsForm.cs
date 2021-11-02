@@ -11,10 +11,10 @@ namespace StructureToMiniBlock.App.Windows.Generator
 {
     public partial class MoreOptionsForm : Form
     {
-        public static bool team = false, coolPlants = false, fOnArmorStand = false, tag2 = false;
+        public static bool team = false, coolPlants = false, fOnArmorStand = false, tag2 = false, blockTag = false;
         public static bool toSnowBlock = true, snowLayer = true;
 
-        public static string teamList = "";
+        public static string teamList = "", blockTagMode = "";
         public static string[] tagsList2;
         CreateForm createForm = new CreateForm();
 
@@ -59,6 +59,12 @@ namespace StructureToMiniBlock.App.Windows.Generator
             toolTip1.SetToolTip(checkBox4, "If you want to move your structure property, it's recomended to put\nthe falling block on armor stands and move the armor stands");
             toolTip1.SetToolTip(checkBox6, "Will summor a armor stand for each snow layer from 1 to 7 layers\n(8 layers blocks are automaticly transformed with a snow block)");
 
+            if (blockTagMode == "#.#.# (Exact position)") comboBox1.SelectedIndex = 0;
+            else if (blockTagMode == "# (Order of creation)") comboBox1.SelectedIndex = 1;
+            else if (blockTagMode == "# (Cascade Mode)") comboBox1.SelectedIndex = 2;
+
+            if (blockTagMode == "# (Cascade Mode)") panel1.Visible = true;
+            else panel1.Visible = false;
 
             if (team == false)
             {
@@ -81,6 +87,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
             if (snowLayer == false) checkBox6.Checked = false;
             else checkBox6.Checked = true;
 
+            
+
             if (toSnowBlock == false) checkBox3.Checked = false;
             else checkBox3.Checked = true;
 
@@ -93,6 +101,17 @@ namespace StructureToMiniBlock.App.Windows.Generator
             {
                 checkBox5.Enabled = true;
                 richTextBox1.Enabled = true;
+            }
+
+            if (blockTag == false)
+            {
+                checkBox7.Checked = false;
+                comboBox1.Enabled = false;
+            }
+            else
+            {
+                checkBox7.Checked = true;
+                comboBox1.Enabled = true;
             }
 
             if (CreateForm.size == "Equal (1 block)")
@@ -156,6 +175,28 @@ namespace StructureToMiniBlock.App.Windows.Generator
         private void checkBox6_Click(object sender, EventArgs e)
         {
             snowLayer = !snowLayer;
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            blockTagMode = comboBox1.Text;
+            if (blockTagMode == "# (Cascade Mode)") panel1.Visible = true;
+            else panel1.Visible = false;
+        }
+
+        private void checkBox7_Click(object sender, EventArgs e)
+        {
+            blockTag = !blockTag;
+            if (blockTag == true)
+            {
+                comboBox1.Enabled = true;
+                //if (tag2 == true) richTextBox1.Enabled = false;
+            }
+            else
+            {
+                comboBox1.Enabled = false;
+                //if (tag2 == true) richTextBox1.Enabled = true;
+            }
         }
 
         private void checkBox4_Click(object sender, EventArgs e)

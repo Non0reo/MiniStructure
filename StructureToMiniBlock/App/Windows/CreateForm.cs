@@ -187,11 +187,6 @@ namespace StructureToMiniBlock.App.Windows
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void CreateForm_Resize(object sender, EventArgs e)
         {
         }
@@ -234,16 +229,6 @@ namespace StructureToMiniBlock.App.Windows
         public void setToEnabled()
         {
             linkLabel1.Enabled = true;
-        }
-
-        private void comboBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
     }

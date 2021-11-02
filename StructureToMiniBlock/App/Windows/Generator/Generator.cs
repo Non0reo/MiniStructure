@@ -28,7 +28,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
         const string axisPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[165f,315f,90f]}";
         //~-1.88159 ~-0.88159 ~0.52457 
         const string headPose = ",Pose:{Head:[360f,0f,180f]}";
-        const string axisHeadPose = ",Pose:{Head:[360f,0f,-90f]";
+        const string axisHeadPose = ",Pose:{Head:[360f,0f,-90f]}";
         const string horizontalPose = "Pose:{LeftArm:[360f,0f,0f],RightArm:[-90f,0f,0f]}";
         //~-0.29 ~-0.38 ~-0.3
         //~-0.145 ~-0.19 ~-0.15
@@ -155,7 +155,7 @@ namespace StructureToMiniBlock.App.Windows.Generator
 
                                         }
 
-                                        //Rotation:
+                                        //Facing
                                         if (onArm == 1)
                                         {
                                             if (block[i + 3].ToString().Contains("stairs") == true || block[i + 3].ToString().Contains("observer") == true)
@@ -206,29 +206,31 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                         //~-0.29 ~-0.38 ~-0.3
                                         //~-0.145 ~-0.19 ~-0.15
 
-
-                                        if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
+                                        if (block[i + 3].ToString() != "stone")
                                         {
-                                            switch (paramSize)
+                                            if (Array.Exists<string>(specialBlocks.flatItem, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", "")) == true))
                                             {
-                                                case 1:
-                                                    y += -0.5107;
-                                                    z += 0.27276;
-                                                    break;
-                                                case 2:
-                                                    y += -0.3575;
-                                                    z += 0.192;
-                                                    break;
-                                                case 3:
-                                                    x += -0.29;
-                                                    y += -0.7545;
-                                                    z += -0.3;
-                                                    break;
-                                                case 4:
-                                                    x += -0.145;
-                                                    y += -0.37725;
-                                                    z += -0.15;
-                                                    break;
+                                                switch (paramSize)
+                                                {
+                                                    case 1:
+                                                        y += -0.5107;
+                                                        z += 0.27276;
+                                                        break;
+                                                    case 2:
+                                                        y += -0.3575;
+                                                        z += 0.192;
+                                                        break;
+                                                    case 3:
+                                                        x += -0.29;
+                                                        y += -0.7545;
+                                                        z += -0.3;
+                                                        break;
+                                                    case 4:
+                                                        x += -0.145;
+                                                        y += -0.37725;
+                                                        z += -0.15;
+                                                        break;
+                                                }
                                             }
                                         }
 
@@ -255,7 +257,31 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                             }
                                         }
 
-                                        //Facing
+                                        //6 Facing Blocks
+                                        /*if (Array.Exists<string>(specialBlocks.sixFaceBlocks, element => element.Contains(block[i + 3].ToString().Replace("minecraft:", ""))) == true)
+                                        {
+                                            switch (paramSize)
+                                            {
+                                                case 1:
+                                                    x += -0.195;
+                                                    z += -0.1;
+                                                    break;
+                                                case 2:
+                                                    x += -0.13879;
+                                                    z += -0.06335;
+                                                    break;
+                                                case 3:
+                                                    x += 0.29;
+                                                    z += 0.43;
+                                                    break;
+                                                case 4:
+                                                    x += 0.145;
+                                                    z += 0.215;
+                                                    break;
+                                            }
+                                        }*/
+
+                                        //Facing (Small Blocks)
                                         if (block[i + 4].ToString() != "null" && paramSize == 3)
                                         {
                                             x = constraint.MoveBlockDueToFacingX(x, block, i);
@@ -300,7 +326,8 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                         y += 0.25;
                                                         break;
                                                     case 2:
-                                                        y += 0.35;
+                                                        x += 0.175;
+                                                        y += 0.175;
                                                         break;
                                                     case 3:
                                                         x += -0.88159;
@@ -321,10 +348,12 @@ namespace StructureToMiniBlock.App.Windows.Generator
                                                 switch (paramSize)
                                                 {
                                                     case 1:
-                                                        y += 0.5;
+                                                        z += -0.25;
+                                                        y += 0.25;
                                                         break;
                                                     case 2:
-                                                        y += 0.35;
+                                                        z += -0.175;
+                                                        y += 0.175;
                                                         break;
                                                     case 3:
                                                         x = constraint.MoveBlockDueToFacingX(x, block, i);
