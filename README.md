@@ -23,11 +23,11 @@ The mini structure is made out of blocks placed on the head or in the hand of Ar
 
 There is a lot of limitation which, I hope, will be corrected in the future...
 
-For now, only the `facing` and `type` blockstate works. `facing` only works for block which can be rotated to the south, west, east and north. There is right now no up or down compatibility (so, for example, piston or upside down stairs won't work). However, `type` blockstate works as well!
+For now, only the `facing`, `axis`, `snowy`, `half` and `type` blockstate works. `facing` only works for block which can be rotated to the south, west, east and north. There is right now no up or down compatibility (so, for example, piston or upside down stairs won't work). However, all others blockstate works perfectly well!
 
-All block that have no render in hand like water, cocoa, piston head, corner stairs or also lit redstone lamps won't be present and converted on the structure (But there will still have an Armor Stand in the emplacement)
+All blocks that have no render in hand like water, cocoa, piston head, corner stairs or also lit redstone lamps won't be present and converted on the structure (But there will still have an Armor Stand at the emplacement)
 
 # Project Things
-It's my first C# Project, and It's also my First Coding Project at all :3
+It's my first C# Project, and It's also my first really big coding project at all :3
 So, the code can be a little bit nasty at some point, I know. I discover C# at the same time I was making this project. So If you see some strange methods or useless variable, It's alright, It's ignorance...
 
